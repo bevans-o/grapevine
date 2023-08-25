@@ -2,6 +2,7 @@ import React from 'react'
 import menu from './menu.module.css'
 import Logo from '../Logo/Logo'
 import Link from 'next/link'
+import User from '../User/User'
 
 function Menu({mode, title}: {mode: string, title: string}) {
   return (
@@ -18,9 +19,7 @@ function Menu({mode, title}: {mode: string, title: string}) {
                 </div>
             </Link>
 
-            <div className={menu.user}>
-
-            </div>
+            <User vote='yes' name=""/>
         </div>
         
     </nav>
