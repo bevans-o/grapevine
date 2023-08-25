@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Jost } from 'next/font/google'
+import { Providers } from './components/provider'
 
 const typeface = Jost({ subsets: ['latin'] })
 
@@ -16,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={typeface.className}>{children}</body>
+      <body className={typeface.className}>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   )
 }
