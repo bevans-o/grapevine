@@ -52,6 +52,9 @@
     background: var(--n800);
     border-color: var(--n700);
     color: var(--a300);
+
+    box-shadow: inset 0 0px 0px 1px rgba(255, 255, 255, 0.05),
+    inset 0 -5px 0px -3px rgba(0, 0, 0, 0.5);
 }
 
 .user {
