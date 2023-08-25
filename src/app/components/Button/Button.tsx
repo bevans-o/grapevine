@@ -9,7 +9,7 @@ function Button({text, type="", onClick}: {
 
 
   return (
-    <button className={`${button.base} ${type === "yes" && button.yes} ${type === "no" && button.no}`} onClick={() => onClick}>
+    <button className={`${button.base} ${type === "yes" && button.yes} ${type === "no" && button.no}`} onClick={() => onClick()}>
         <span className={button.text}>{text}</span>
     </button>
   )
