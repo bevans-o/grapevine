@@ -10,24 +10,24 @@ function TreeView() {
         <h2 className={tree.title}>Vine Title</h2>
 
         <div className={tree.nodes}>
-            <TreeNode title="Bunch 1"> 
-                <TreeNode title="Bunch 1.1"> </TreeNode>
-                <TreeNode title="Bunch 1.2"> </TreeNode>
-                <TreeNode title="Bunch 1.3"> </TreeNode>
+            <TreeNode title="Grape 1"> 
+                <TreeNode title="Grape 1.1"> </TreeNode>
+                <TreeNode title="Grape 1.2"> </TreeNode>
+                <TreeNode title="Grape 1.3"> </TreeNode>
             </TreeNode>
-            <TreeNode title="Bunch 2"> 
-                <TreeNode title="Bunch 2.1"> 
-                    <TreeNode title="Bunch 2.1.1"> </TreeNode>
-                    <TreeNode title="Bunch 2.1.2"> </TreeNode>
-                    <TreeNode title="Bunch 2.1.3"> </TreeNode>
+            <TreeNode title="Grape 2"> 
+                <TreeNode title="Grape 2.1"> 
+                    <TreeNode title="Grape 2.1.1"> </TreeNode>
+                    <TreeNode title="Grape 2.1.2"> </TreeNode>
+                    <TreeNode title="Grape 2.1.3"> </TreeNode>
                 </TreeNode>
-                <TreeNode title="Bunch 2.2"> </TreeNode>
+                <TreeNode title="Grape 2.2"> </TreeNode>
             </TreeNode>
-            <TreeNode title="Bunch 3"> </TreeNode>
-            <TreeNode title="Bunch 4"> 
-                <TreeNode title="Bunch 4.1"> </TreeNode>
-                <TreeNode title="Bunch 4.2"> </TreeNode>
-                <TreeNode title="Bunch 4.3"> </TreeNode>
+            <TreeNode title="Grape 3"> </TreeNode>
+            <TreeNode title="Grape 4"> 
+                <TreeNode title="Grape 4.1"> </TreeNode>
+                <TreeNode title="Grape 4.2"> </TreeNode>
+                <TreeNode title="Grape 4.3"> </TreeNode>
             </TreeNode>
         </div>
         

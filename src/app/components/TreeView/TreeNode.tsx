@@ -6,9 +6,6 @@ function TreeNode({children, title}: {children: React.ReactNode, title: string})
     const [expanded, setExpanded] = useState(false);
     const childCount = React.Children.count(children) - 1;
 
-
-    console.log(`${title}: ${React.Children.count(children)}`)
-
   return (
     <div>
         <div className={`${tree.node} ${expanded ? tree.expanded : ""} ${childCount > 0 ? tree.hasChildren : ""}`} onClick={() => setExpanded(!expanded)}>
