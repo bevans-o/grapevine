@@ -7,7 +7,7 @@ function Menu({mode, title}: {mode: string, title: string}) {
   return (
     <nav className={menu.main}>
         <div className={menu.left}>
-            <Logo size='icon'/>
+            <Logo type='icon'/>
             <h1><span className={menu.mode}>{mode}</span> {title}</h1>
         </div>
         
@@ -17,6 +17,10 @@ function Menu({mode, title}: {mode: string, title: string}) {
                     Dashboard
                 </div>
             </Link>
+
+            <div className={menu.user}>
+
+            </div>
         </div>
         
     </nav>

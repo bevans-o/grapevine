@@ -5,7 +5,7 @@ export default function Login() {
     return (
       <main className={login.main}>
         <div className={login.content}>
-          <Logo size="full"/>
+          <Logo type="full"/>
           <div className={login.box}>
             Login
           </div>

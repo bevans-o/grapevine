@@ -7,7 +7,7 @@
     grid-area: menu;
 
     gap: 2rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 0.65rem;
 
     background: var(--n900);
     border-bottom: 1px solid var(--n700);
@@ -35,7 +35,7 @@
 }
 
 .mode {
-    padding-right: 0.5rem;
+    padding-right: 0.25rem;
     color: var(--n500);
     font-weight: 400;
 }
@@ -51,4 +51,11 @@
     background: var(--n800);
     border-color: var(--n700);
     color: var(--a300);
+}
+
+.user {
+    width: 1.8rem;
+    height: 1.8rem;
+    background: var(--a300);
+    border-radius: 99999px;
 }
