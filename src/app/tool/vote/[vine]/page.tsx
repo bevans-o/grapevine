@@ -1,5 +1,6 @@
 import Menu from "@/app/components/Menu/Menu";
 import TreeView from "@/app/components/TreeView/TreeView";
+import VotePanel from "@/app/components/VotePanel/VotePanel";
 
 export default function Vote({ params }: {params: {vine: string}} ) {
     return (
@@ -9,7 +10,7 @@ export default function Vote({ params }: {params: {vine: string}} ) {
         <div>
           Edit: {params.vine}
         </div>
-        <div>right sidebar</div>
+        <VotePanel/>
       </>
     )
   }

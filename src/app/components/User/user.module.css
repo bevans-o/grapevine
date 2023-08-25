@@ -1,0 +1,49 @@
+.token {
+    position: relative;
+    background: var(--n300);
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 99999px;
+
+    border: 1px solid var(--n500);
+    box-shadow: inset 0 1px 1px 2px rgba(255, 255, 255, 0.1),
+    inset 0 -5px 1px -3px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip {
+    display: none;
+}
+
+.token:hover .tooltip {
+    display: block;
+}
+
+.token.yes {
+    background: var(--yes500);
+    border-color: var(--yes800);
+}
+
+.token.no {
+    background: var(--no500);
+    border-color: var(--no800);
+}
+
+.tooltip {
+    white-space: nowrap;
+    left: 50%;
+    transform: translate(-50%, 10px);
+    position: absolute;
+    background: var(--n900);
+    color: var(--n300);
+
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--n800);
+    cursor: default;
+    user-select: none;
+
+    box-shadow: inset 0 -6px 1px -3px rgba(0, 0, 0, 0.5), 
+    inset 0 0px 1px 2px rgba(255, 255, 255, 0.1);
+
+    z-index: 10;
+}

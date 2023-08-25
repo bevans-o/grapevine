@@ -31,12 +31,36 @@
   --b700: #693890;
   --b800: #5a3186;
   --b900: #402977;
+
+  --no50: #ffded5;
+  --no100: #ffc6ba;
+  --no200: #ffa899;
+  --no300: #ff8a7b;
+  --no400: #fe7368;
+  --no500: #fa5b56;
+  --no600: #e6514d;
+  --no700: #cc4240;
+  --no800: #b53434;
+  --no900: #8c2023;
+
+  --yes50: var(--a50);
+  --yes100: var(--a100);
+  --yes200: var(--a200);
+  --yes300: var(--a300);
+  --yes400: var(--a400);
+  --yes500: var(--a500);
+  --yes600: var(--a600);
+  --yes700: var(--a700);
+  --yes800: var(--a800);
+  --yes900: var(--a900);
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scrollbar-color: var(--n800), transparent;
+  scrollbar-width: thin;
 }
 
 html,
@@ -48,4 +72,8 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
 }

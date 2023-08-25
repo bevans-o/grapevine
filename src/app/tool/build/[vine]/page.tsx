@@ -1,3 +1,4 @@
+import BuildPanel from "@/app/components/BuildPanel/BuildPanel";
 import Menu from "@/app/components/Menu/Menu";
 import TreeView from "@/app/components/TreeView/TreeView";
 
@@ -9,7 +10,7 @@ export default function Build({ params }: {params: {vine: string}} ) {
         <div>
           Edit: {params.vine}
         </div>
-        <div>right sidebar</div>
+        <BuildPanel/>
       </>
     )
   }

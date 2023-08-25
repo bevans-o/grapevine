@@ -1,0 +1,73 @@
+.base {
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--n100);
+    background: var(--n800);
+    border: 1px solid var(--n900);
+    padding: 0.3rem 0.5rem;
+
+    cursor: pointer;
+
+    border-radius: 5px;
+
+    box-shadow: inset 0 1px 1px 2px rgba(255, 255, 255, 0.1),
+    inset 0 -6px 1px -3px rgba(0, 0, 0, 0.2);
+
+    transition: 
+        background-color 200ms ease,
+        box-shadow 200ms ease;
+}
+
+.text {
+    display: block;
+    transition: translate 200ms ease;
+}
+
+.base.yes {
+    background: var(--yes600);
+    border-color: var(--yes900);
+}
+
+.base.no {
+    background: var(--no600);
+    border-color: var(--no900);
+}
+
+.base:hover {
+    background: var(--n700);
+    box-shadow: inset 0 1px 1px 2px rgba(255, 255, 255, 0.1),
+    inset 0 -7px 1px -3px rgba(0, 0, 0, 0.2);
+}
+
+.base:hover .text {
+    translate: 0 -1px;
+}
+
+.base.yes:hover {
+    background: var(--yes500);
+}
+
+.base.no:hover {
+    background: var(--no500);
+}
+
+
+
+.base:active {
+    background: var(--n900);
+    box-shadow: inset 0 2px 1px 2px rgba(0, 0, 0, 0.1),
+    inset 0 -7px 1px -3px rgba(0, 0, 0, 0.0);
+}
+
+.base:active .text {
+    translate: 0 1px;
+}
+
+.base.yes:active {
+    background: var(--yes700);
+}
+
+.base.no:active {
+    background: var(--no700);
+}
