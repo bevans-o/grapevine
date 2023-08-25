@@ -1,9 +1,9 @@
 import Menu from "@/app/components/Menu/Menu";
 
-export default function Build({ params }: {params: {vine: string}} ) {
+export default function Vote({ params }: {params: {vine: string}} ) {
     return (
       <>
-        <Menu mode="Building" title={params.vine}/>
+        <Menu mode="Voting" title={params.vine}/>
         <div>left sidebar</div>
         <div>
           Edit: {params.vine}
