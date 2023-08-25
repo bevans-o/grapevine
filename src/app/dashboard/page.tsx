@@ -6,7 +6,7 @@ export default function Dashboard() {
   const {data: session, status} = useSession();
   return (
     <main>
-      Dashboard {status ?? "" }
+      Dashboard {session?.user?.name ?? "" }
     </main>
   )
 }

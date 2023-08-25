@@ -1,13 +1,18 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
+import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import { client, mongodb, db } from "@/app/lib/mongodb";
+import { SignInOptions } from "next-auth/react";
 
-const prisma = new PrismaClient();
+interface User {
+  email : string,
+  name : string,
+  tags : string[],
+  weight : number
+}
 
 const handler =  NextAuth({
-    // Configure one or more authentication providers
-    adapter: PrismaAdapter(prisma),
+    adapter: MongoDBAdapter(mongodb, {collections: {Users: "googleAccounts"}}),
     
     providers: [
       GoogleProvider({
@@ -18,6 +23,12 @@ const handler =  NextAuth({
     
 
     callbacks: {
+      async signIn({ user, account, profile, email, credentials } : SignInOptions) {
+        createAccount(profile).then((res: any) => {
+          console.log(res.data)
+        }).catch((error : any) => console.log(error));
+        return true
+      },
       session({user, session}) {
         if (session.user) {
           session.user.name = user.name;
@@ -32,3 +43,18 @@ const handler =  NextAuth({
 export { handler as GET, handler as POST}
 
   
+async function createAccount(profile : any) {
+  if ((await db.collection("users").countDocuments({"email" : profile.email})) > 0) {
+      return {"body" : "Account Exists!"}
+  } else {
+      const newUser = getNewUser(profile);
+      db.collection("users").insertOne(newUser);
+      return {"body" : {"newUser" : JSON.stringify(newUser)}}
+  }
+}
+
+
+function getNewUser(profile: GoogleProfile) : User{
+  return {email: profile.email, name: profile.name, tags : [], weight : 
+  1}
+}
