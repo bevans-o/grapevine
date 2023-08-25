@@ -41,14 +41,14 @@
     font-weight: 400;
 }
 
-.main a {
+.main .item {
     padding: 0.25rem 0.5rem;
     border: 1px solid transparent;
     border-radius: 5px;
     transition: all 100ms ease;
 }
 
-.main a:hover {
+.main .item:hover {
     background: var(--n800);
     border-color: var(--n700);
     color: var(--a300);

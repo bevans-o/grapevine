@@ -19,7 +19,13 @@ function Menu({mode, title}: {mode: string, title: string}) {
                 </div>
             </Link>
 
-            <User vote='yes' name=""/>
+            <Link href="/tool/build/new">
+                <div className={menu.item}>
+                    New
+                </div>
+            </Link>
+
+            <Link href="/login"><User vote='yes' name=""/></Link>
         </div>
         
     </nav>
