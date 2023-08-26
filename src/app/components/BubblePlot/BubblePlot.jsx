@@ -92,12 +92,12 @@ function BubblePlot({vine, selected, onSelect}) {
     const simulation = d3.forceSimulation(nodes)
       .force("link", d3.forceLink(links).id(d => d.id).distance(d => {
         console.log(d);
-        if (d.target.data.owner) return 200;
+        if (d.target.data.owner) return 180;
         if (d.target.data.email) return 50;
-        return 150;
+        return 120;
       }
       ).strength(1))
-      .force("charge", d3.forceManyBody().strength(-160));
+      .force("charge", d3.forceManyBody().strength(-300));
 
     svg.attr("width", width)
       .attr("height", height)

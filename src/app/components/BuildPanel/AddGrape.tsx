@@ -8,7 +8,7 @@ import { Grape, Tag } from '@/app/lib/types'
 function AddGrape() {
     const [name, setName] = useState("");
     const [desc, setDesc] = useState("");
-    const [threshold, setThreshold] = useState(50);
+    const [threshold, setThreshold] = useState(75);
     const [tags, setTags] = useState<string[]>([]);
 
     const marks = [
@@ -55,7 +55,7 @@ function AddGrape() {
 
                 <Slider
                     aria-label="Threshold"
-                    defaultValue={75}
+                    defaultValue={threshold}
                     valueLabelDisplay="auto"
                     step={5}
                     marks={marks}
