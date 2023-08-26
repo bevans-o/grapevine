@@ -22,6 +22,6 @@ async function getUser(email: string) : Promise<User> {
         user = { email: jsonRes.email, name: jsonRes.name, image: jsonRes.image, tags: jsonRes.tags, weight: jsonRes.weight, role: jsonRes.role}; 
     
     }
-    //user = { email: jsonRes.email, name: jsonRes.name, image: jsonRes.image, tags: jsonRes.tags, weight: jsonRes.weight, role: jsonRes.role}; 
+
     return user
 }

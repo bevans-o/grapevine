@@ -26,6 +26,9 @@ export async function getUser(email: string, setUser: Function) {
 // function getCurrentUser(): User {}
 
 // function getVine(id: string): Vine {}
+export async function getVine(vineId : string): Promise<Vine> {
+    return (await axios.post('/api/getVine', {vineId : vineId})).data
+}
 
 // function addGrape(parentId: string, grape: Grape) {}
 
