@@ -1,15 +1,78 @@
-import { Grape, GrapeStatus, Role, Vine } from "./types";
+import { Grape, GrapeStatus, Role, User, Vine } from "./types";
 
-const sampleUser = {
-    email: "bcevans@student.unimelb.edu.au",
-    name: "Ben Evans",
-    image: "",
-    tags: [
-        { name: "frontend" }
-    ],
-    weight: 2,
-    role: Role.ADMIN
-}
+const users: User[] = [
+    {
+        email: "bcevans@student.unimelb.edu.au",
+        name: "Ben Evans",
+        image: "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2360&q=80",
+        tags: [
+            { name: "frontend" }
+        ],
+        weight: 2,
+        role: Role.ADMIN
+    },
+    {
+        email: "pippi@gmail.com",
+        name: "Pippi Pinklewinkle",
+        image: "",
+        tags: [
+            { name: "frontend" }
+        ],
+        weight: 1,
+        role: Role.USER
+    },
+    {
+        email: "bert@gmail.com",
+        name: "Bert Jongli",
+        image: "https://images6.fanpop.com/image/photos/40200000/Trending-Facebook-Profile-Pictures-Of-Boys-emo-boys-40268071-1537-2431.jpg",
+        tags: [
+            { name: "backend" }
+        ],
+        weight: 2,
+        role: Role.USER
+    },
+    {
+        email: "rpais@student.unimelb.edu.au",
+        name: "Risa Pais",
+        image: "",
+        tags: [
+            { name: "backend" }
+        ],
+        weight: 3,
+        role: Role.ADMIN
+    },
+    {
+        email: "tata@gmail.com",
+        name: "Tata Tutu",
+        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        tags: [
+            { name: "design" }
+        ],
+        weight: 1,
+        role: Role.USER
+    },
+    {
+        email: "yessica@gmail.com",
+        name: "Yessica Noway",
+        image: "",
+        tags: [
+            { name: "design" }
+        ],
+        weight: 1,
+        role: Role.USER
+    },
+    {
+        email: "nancy@gmail.com",
+        name: "Nancy Neverlyn",
+        image: "",
+        tags: [
+            { name: "frontend" },
+            { name: "backend" }
+        ],
+        weight: 1,
+        role: Role.USER
+    }
+]
 
 export const sampleGrape: Grape = {
     id: "as8913jiasd1i3",
@@ -27,7 +90,7 @@ export const sampleVine: Vine = {
     id: "2834872384",
     name: "Test Vine",
     desc: "This is a vine for testing purposes. Yum yum.",
-    owner: sampleUser,
+    owner: users[3],
     bunches: [
         {
             id: "1s098df01239",
@@ -39,9 +102,9 @@ export const sampleVine: Vine = {
                     name: "All text should be pink.",
                     desc: "",
                     status: GrapeStatus.OPEN,
-                    yeses: [sampleUser],
-                    nos: [],
-                    threshold: 80,
+                    yeses: [users[3], users[2], users[5]],
+                    nos: [users[0]],
+                    threshold: 30,
                     tags: [{ name: "frontend" }],
                     grapes: []
                 },
@@ -49,9 +112,9 @@ export const sampleVine: Vine = {
                     id: "01kkdf002o34",
                     name: "Papyrus as primary font family.",
                     desc: "",
-                    status: GrapeStatus.OPEN,
-                    yeses: [sampleUser],
-                    nos: [],
+                    status: GrapeStatus.FAILED,
+                    yeses: [users[1]],
+                    nos: [users[6], users[4], users[3], users[2]],
                     threshold: 80,
                     tags: [{ name: "frontend" }],
                     grapes: [
@@ -59,9 +122,9 @@ export const sampleVine: Vine = {
                             id: "01kkdf002o34",
                             name: "Urbanist as primary font family.",
                             desc: "",
-                            status: GrapeStatus.OPEN,
-                            yeses: [sampleUser],
-                            nos: [],
+                            status: GrapeStatus.PASSED,
+                            yeses: [users[6], users[4], users[3], users[2], users[1], users[0]],
+                            nos: [users[5]],
                             threshold: 80,
                             tags: [{ name: "frontend" }],
                             grapes: []
@@ -81,7 +144,7 @@ export const sampleVine: Vine = {
                     desc: "",
                     status: GrapeStatus.OPEN,
                     yeses: [],
-                    nos: [sampleUser],
+                    nos: [users[1]],
                     threshold: 50,
                     tags: [{ name: "frontend" }],
                     grapes: []
