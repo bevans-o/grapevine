@@ -1,19 +1,39 @@
-import { Grape, User, Vine } from "./types";
+import { Callback } from "mongodb";
+import { Grape, User, Vine, Role } from "./types";
+import axios from "axios";
 
-function getUser(id: string): User {}
 
-function getCurrentUser(): User {}
 
-function getVine(id: string): Vine {}
+export async function getUser(email: string, setUser: Function) {
+    let emptyUser : User = {email : "", name: "", image: "", 
+    tags: [], weight: 0, role: Role.USER}
+    let user : User;
+    if (email == "") {
+        setUser(emptyUser);
+    }
+    axios.post('/api/getUser', {email: email})
+    .then((res) =>{
+        setUser(res.data)
+    }
+    )
+    .catch((error) => {
+        setUser(emptyUser)
+    })
+    
+}
 
-function addGrape(parentId: string, grape: Grape) {}
+// function getCurrentUser(): User {}
 
-function getAllUsers(): User[] {}
+// function getVine(id: string): Vine {}
 
-function getAllVines(): Vine[] {}
+// function addGrape(parentId: string, grape: Grape) {}
 
-function createVine(): Vine {}
+// function getAllUsers(): User[] {}
 
-function voteYes(grapeId: string, voterId: string) {} // also update status
+// function getAllVines(): Vine[] {}
 
-function voteNo(grapeId: string, voterId: string) {} // also update status
+// function createVine(): Vine {}
+
+// function voteYes(grapeId: string, voterId: string) {} // also update status
+
+// function voteNo(grapeId: string, voterId: string) {} // also update status

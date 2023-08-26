@@ -3,13 +3,7 @@ import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import { client, mongodb, db } from "@/app/lib/mongodb";
 import { SignInOptions } from "next-auth/react";
-
-interface User {
-  email : string,
-  name : string,
-  tags : string[],
-  weight : number
-}
+import { User, Role } from '../../../lib/types'
 
 const handler =  NextAuth({
     adapter: MongoDBAdapter(mongodb, {collections: {Users: "googleAccounts"}}),
@@ -56,5 +50,5 @@ async function createAccount(profile : any) {
 
 function getNewUser(profile: GoogleProfile) : User{
   return {email: profile.email, name: profile.name, tags : [], weight : 
-  1}
+  1, image: profile.picture, role: Role.USER}
 }
