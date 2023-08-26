@@ -18,7 +18,7 @@ async function getVine(vineId: string) : Promise<Vine> {
     return db.collection("vines").findOne({_id: new ObjectId(vineId)}).then((res) => {
         let data = JSON.stringify(res)
         let jsonRes = JSON.parse(data)
-        let vine : Vine = {id: jsonRes._id, name: jsonRes.name, desc: jsonRes.description, owner: jsonRes.owner, bunches: jsonRes.bunches}
+        let vine : Vine = {id: jsonRes._id, name: jsonRes.name, desc: jsonRes.description, owner: jsonRes.owner, bunches: jsonRes.bunches, grapes: jsonRes.grapes}
         return vine
     }).catch((error) => {
         return error
