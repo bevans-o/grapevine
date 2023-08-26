@@ -6,7 +6,7 @@ function Button({text, type="", onClick, children, disabled}: {
     type?: string,
     onClick: Function,
     children?: React.ReactNode,
-    disabled: boolean,
+    disabled?: boolean,
 }) {
 
 
