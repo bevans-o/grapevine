@@ -8,17 +8,21 @@ import { sampleVine } from "@/app/lib/sample";
 import { Bunch, Grape, Vine, User } from "@/app/lib/types";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { getUser } from "@/app/lib/functions";
+import { getUser, getVine } from "@/app/lib/functions";
 
 export default function Vote({ params }: {params: {vine: string}} ) {
+  const {data: session, status} = useSession();
   const [activeVine, setActiveVine] = useState<Vine>(sampleVine);
   const [selected, setSelected] = useState<Grape | Bunch | null>(null);
-  const {data: session, status} = useSession();
   const [user, setUser] = useState<User>();
+
 
   useEffect(() => {
     (session?.user && getUser(session.user.email!, setUser))
-  })
+    getVine(params.vine).then((res) => {
+      setActiveVine(res)
+    })
+  }, [])
 
 
 
