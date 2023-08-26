@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { User, Role } from '../../lib/types'
 import { NextResponse } from 'next/server';
-import {db} from '../../lib/mongodb';
+import MongoGlobal from '../../lib/mongodb';
 
 
 export async function POST(req: Request, res: Response) {
@@ -15,7 +15,7 @@ export async function POST(req: Request, res: Response) {
 async function getUser(email: string) : Promise<User> {
     let user : User = {email : "", name: "", image: "", 
     tags: [], weight: 0, role: Role.USER}
-    let data  = await db.collection("users").findOne({email: email})
+    let data  = await MongoGlobal.getInstance().getDb().collection("users").findOne({email: email})
     if (data){
         let res = JSON.stringify(data)
         let jsonRes = await JSON.parse(res)

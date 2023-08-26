@@ -1,12 +1,12 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import { client, mongodb, db } from "@/app/lib/mongodb";
+import MongoGlobal from "@/app/lib/mongodb";
 import { SignInOptions } from "next-auth/react";
 import { User, Role } from '../../../lib/types'
 
 const handler =  NextAuth({
-    adapter: MongoDBAdapter(mongodb, {collections: {Users: "googleAccounts"}}),
+    adapter: MongoDBAdapter(MongoGlobal.getInstance().getPromise(), {collections: {Users: "googleAccounts"}}),
     
     providers: [
       GoogleProvider({
@@ -19,7 +19,6 @@ const handler =  NextAuth({
     callbacks: {
       async signIn({ user, account, profile, email, credentials } : SignInOptions) {
         createAccount(profile).then((res: any) => {
-          console.log(res.data)
         }).catch((error : any) => console.log(error));
         return true
       },
@@ -38,11 +37,11 @@ export { handler as GET, handler as POST}
 
   
 async function createAccount(profile : any) {
-  if ((await db.collection("users").countDocuments({"email" : profile.email})) > 0) {
+  if ((await MongoGlobal.getInstance().getDb().collection("users").countDocuments({"email" : profile.email})) > 0) {
       return {"body" : "Account Exists!"}
   } else {
       const newUser = getNewUser(profile);
-      db.collection("users").insertOne(newUser);
+      MongoGlobal.getInstance().getDb().collection("users").insertOne(newUser);
       return {"body" : {"newUser" : JSON.stringify(newUser)}}
   }
 }

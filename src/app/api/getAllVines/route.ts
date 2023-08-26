@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { Vine } from '../../lib/types'
 import { NextResponse } from 'next/server';
-import {db} from '../../lib/mongodb';
+import MongoGlobal from '../../lib/mongodb';
 
 
 export async function POST(req: Request, res: Response) {
@@ -13,7 +13,7 @@ export async function POST(req: Request, res: Response) {
 
 async function getUsers() : Promise<Array<Vine>> {
     let vines : Array<Vine> = []
-    let data  = db.collection("vines").find({})
+    let data  = MongoGlobal.getInstance().getDb().collection("vines").find({})
     for await (const vine of data) {
         let res = JSON.stringify(vine)
         let jsonRes = await JSON.parse(res)
