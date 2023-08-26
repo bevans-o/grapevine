@@ -1,0 +1,28 @@
+.names {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+
+    color:var(--n800);
+
+    user-select: none;
+}
+
+.names a,
+.names a:visited {
+    color: var(--n700);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 200ms ease;
+}
+
+.names a:hover,
+.names a:visited:hover {
+    color: var(--n600);
+}

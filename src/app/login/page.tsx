@@ -4,6 +4,7 @@ import login from "./login.module.css"
 import { signIn, signOut, useSession } from "next-auth/react";
 import GoogleIcon from '@mui/icons-material/Google';
 import Button from "../components/Button/Button";
+import Names from "../components/Names/Names";
 
 
 export default function Login() {
@@ -21,6 +22,8 @@ export default function Login() {
             </Button>
           </div>
         </div>
+
+        <Names />
       </main>
     )
   }
