@@ -65,14 +65,14 @@ function Logo({ type }: {type: string}) {
 
       {type === "icon" && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17" viewBox="0 0 24 17" fill="none">
       <g filter="url(#filter0_dii_8_695)">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M21.7417 5.53871C22.0869 5.19235 22.086 4.63172 21.7396 4.28652C21.3933 3.94131 20.8326 3.94225 20.4874 4.2886C19.8221 4.95617 19.2094 5.30166 18.6484 5.45739C18.0886 5.61277 17.5172 5.59681 16.9055 5.4431C15.7086 5.14236 14.4908 4.36203 13.0894 3.46408L12.7812 3.2668C11.3283 2.33833 9.67064 1.31648 7.89273 1.06137C6.00896 0.791078 4.11711 1.38834 2.24393 3.35727C1.90687 3.71156 1.92084 4.27201 2.27513 4.60907C2.62942 4.94613 3.18987 4.93216 3.52694 4.57787C5.06545 2.96071 6.40663 2.63714 7.64121 2.81429C8.51954 2.94031 9.40026 3.32461 10.3251 3.84427C10.1001 3.95733 9.87427 4.08868 9.65463 4.24004C8.80036 4.82873 7.99375 5.75633 7.76737 7.11461L9.51414 7.40574C9.64193 6.63899 10.0897 6.09086 10.6595 5.6982C11.2257 5.30798 11.8667 5.10732 12.2706 5.04329C12.9058 5.45157 13.5716 5.87683 14.2565 6.24825C13.6358 7.15829 13.0679 8.54484 13.0679 10.3592H14.8388C14.8388 8.67215 15.4553 7.54884 15.9082 6.99214C16.0961 7.05645 16.2847 7.11304 16.4739 7.16057C17.3199 7.37315 18.2095 7.41705 19.122 7.16374C20.0333 6.91079 20.9042 6.37905 21.7417 5.53871Z" fill="url(#paint0_linear_8_695)"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M21.7417 5.53871C22.0869 5.19235 22.086 4.63172 21.7396 4.28652C21.3933 3.94131 20.8326 3.94225 20.4874 4.2886C19.8221 4.95617 19.2094 5.30166 18.6484 5.45739C18.0886 5.61277 17.5172 5.59681 16.9055 5.4431C15.7086 5.14236 14.4908 4.36203 13.0894 3.46408L12.7812 3.2668C11.3283 2.33833 9.67064 1.31648 7.89273 1.06137C6.00896 0.791078 4.11711 1.38834 2.24393 3.35727C1.90687 3.71156 1.92084 4.27201 2.27513 4.60907C2.62942 4.94613 3.18987 4.93216 3.52694 4.57787C5.06545 2.96071 6.40663 2.63714 7.64121 2.81429C8.51954 2.94031 9.40026 3.32461 10.3251 3.84427C10.1001 3.95733 9.87427 4.08868 9.65463 4.24004C8.80036 4.82873 7.99375 5.75633 7.76737 7.11461L9.51414 7.40574C9.64193 6.63899 10.0897 6.09086 10.6595 5.6982C11.2257 5.30798 11.8667 5.10732 12.2706 5.04329C12.9058 5.45157 13.5716 5.87683 14.2565 6.24825C13.6358 7.15829 13.0679 8.54484 13.0679 10.3592H14.8388C14.8388 8.67215 15.4553 7.54884 15.9082 6.99214C16.0961 7.05645 16.2847 7.11304 16.4739 7.16057C17.3199 7.37315 18.2095 7.41705 19.122 7.16374C20.0333 6.91079 20.9042 6.37905 21.7417 5.53871Z" fill="url(#paint0_linear_8_695)"/>
       </g>
       <g filter="url(#filter1_ii_8_695)">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M4 9.54173C4 7.58569 5.58569 6 7.54173 6C8.80847 6 9.91989 6.66502 10.5459 7.66498C8.53218 8.42038 7.09898 10.3632 7.09898 12.6407C7.09898 12.7812 7.10443 12.9203 7.11513 13.058C5.36024 12.8474 4 11.3534 4 9.54173ZM12.4116 8.65631C10.2111 8.65631 8.42715 10.4402 8.42715 12.6408C8.42715 14.8413 10.2111 16.6252 12.4116 16.6252C14.6122 16.6252 16.3961 14.8413 16.3961 12.6408C16.3961 10.4402 14.6122 8.65631 12.4116 8.65631Z" fill="url(#paint1_linear_8_695)"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M4 9.54173C4 7.58569 5.58569 6 7.54173 6C8.80847 6 9.91989 6.66502 10.5459 7.66498C8.53218 8.42038 7.09898 10.3632 7.09898 12.6407C7.09898 12.7812 7.10443 12.9203 7.11513 13.058C5.36024 12.8474 4 11.3534 4 9.54173ZM12.4116 8.65631C10.2111 8.65631 8.42715 10.4402 8.42715 12.6408C8.42715 14.8413 10.2111 16.6252 12.4116 16.6252C14.6122 16.6252 16.3961 14.8413 16.3961 12.6408C16.3961 10.4402 14.6122 8.65631 12.4116 8.65631Z" fill="url(#paint1_linear_8_695)"/>
       </g>
       <defs>
-      <filter id="filter0_dii_8_695" x="0" y="0" width="24" height="13.3592" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <filter id="filter0_dii_8_695" x="0" y="0" width="24" height="13.3592" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+      <feFlood floodOpacity="0" result="BackgroundImageFix"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
       <feOffset dy="1"/>
       <feGaussianBlur stdDeviation="1"/>
@@ -93,7 +93,7 @@ function Logo({ type }: {type: string}) {
       <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
       <feBlend mode="normal" in2="effect2_innerShadow_8_695" result="effect3_innerShadow_8_695"/>
       </filter>
-      <filter id="filter1_ii_8_695" x="4" y="5.5" width="12.396" height="12.1252" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <filter id="filter1_ii_8_695" x="4" y="5.5" width="12.396" height="12.1252" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
       <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
@@ -110,13 +110,13 @@ function Logo({ type }: {type: string}) {
       <feBlend mode="normal" in2="effect1_innerShadow_8_695" result="effect2_innerShadow_8_695"/>
       </filter>
       <linearGradient id="paint0_linear_8_695" x1="12.8906" y1="-1.77954" x2="14.6198" y2="10.5386" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#A877CF"/>
-      <stop offset="0.0001" stop-color="#CDCF77"/>
-      <stop offset="1" stop-color="#368B34"/>
+      <stop stopColor="#A877CF"/>
+      <stop offset="0.0001" stopColor="#CDCF77"/>
+      <stop offset="1" stopColor="#368B34"/>
       </linearGradient>
       <linearGradient id="paint1_linear_8_695" x1="10.198" y1="6" x2="10.198" y2="16.6252" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#B975D0"/>
-      <stop offset="1" stop-color="#6F3E81"/>
+      <stop stopColor="#B975D0"/>
+      <stop offset="1" stopColor="#6F3E81"/>
       </linearGradient>
       </defs>
       </svg>}

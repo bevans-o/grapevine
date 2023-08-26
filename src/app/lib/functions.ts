@@ -33,7 +33,9 @@ export async function getAllUsers(): Promise<Array<User>> {
     return (await axios.post('/api/getAllUsers')).data
 }
 
-// function getAllVines(): Vine[] {}
+export async function getAllVines(): Promise<Array<Vine>> {
+    return (await axios.post('/api/getAllVines')).data
+}
 
 export async function createVine(user : User): Promise<ObjectId> {
     return (await axios.post('/api/createVine', {user : user})).data
