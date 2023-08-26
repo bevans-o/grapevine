@@ -32,6 +32,27 @@ function VotePanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null
         return !voted;
     })
 
+    let currentWeight = 0;
+    let possibleWeight = 0;
+    if (isGrape(selected)) {
+        selected?.yeses.forEach((user) => {
+            const tags = selected.tags.filter(tag => user.tags.includes(tag));
+
+            currentWeight += user.weight * (tags.length > 0 ? 2 : 1);
+        })
+
+        users.forEach((user) => {
+            const tags = selected.tags.filter(tag => user.tags.includes(tag));
+
+            possibleWeight += user.weight * (tags.length > 0 ? 2 : 1);
+        })
+    }
+
+    console.log(currentWeight);
+    console.log(possibleWeight);
+
+    let percentage = (possibleWeight > 0) ? Math.round(100 * (currentWeight / possibleWeight)) : 0;
+
     useEffect(() => {
         getAllUsers().then((res) => {
             setUsers(res)
@@ -60,26 +81,38 @@ function VotePanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null
                         {selected.yeses.map((user: User) => 
                             <UserBubble user={user} vote="yes" key={user.email}/>
                         )}
+                        <div className={vote.label}>Yes</div>
                     </div>}
 
                     {selected.nos.length > 0 && <div className={vote.nos}>
                         {selected.nos.map((user: User) => 
                             <UserBubble user={user} vote="no" key={user.email}/>
                         )}
+                        <div className={vote.label}>No</div>
                     </div>}
 
                     {undecideds.length > 0 && <div className={vote.undecided}>
                         {undecideds.map((user: User) => 
                             <UserBubble user={user} vote="" key={user.email}/>
                         )}
+                        <div className={vote.label}>Yet to vote</div>
                     </div>}
 
                     <div className={vote.threshold}>
                         This grape requires {selected.threshold}% consent to pass.
 
-                        <div className={`${vote.status} ${vote.failing}`}>
-                            67% - FAILING
-                        </div>
+                        {percentage < selected.threshold &&
+                            <div className={`${vote.status} ${vote.failing}`}>
+                                {percentage}% - FAILING
+                            </div>
+                        }
+
+                        {percentage >= selected.threshold &&
+                            <div className={`${vote.status} ${vote.succeeding}`}>
+                                {percentage}% - PASSED
+                            </div>
+                        }
+                        
                     </div>
 
                     

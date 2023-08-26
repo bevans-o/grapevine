@@ -9,6 +9,7 @@ function TreeView({vine, selected, onSelect}: {vine: Vine, selected: Bunch | Gra
   return (
     <div className={tree.sidebar}>
         <h2 className={tree.title}>{vine.name}</h2>
+        <p className={tree.desc}>{vine.desc}</p>
 
         <div className={tree.nodes}>
             {vine.bunches.map((bunch: Bunch) => 

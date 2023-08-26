@@ -18,9 +18,11 @@
 .yeses,
 .nos,
 .undecided {
+    position: relative;
     display: flex;
     gap: 0.5rem;
     padding: 0.5rem 0;
+    padding-bottom: 1.5rem;
     flex-wrap: wrap;
 }
 
@@ -63,4 +65,25 @@
 .status.failing {
     background: var(--no600);
     border-color: var(--no800);
+}
+
+.label {
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 2px;
+    translate: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.yeses .label {
+    color: var(--yes400);
+}
+
+.nos .label {
+    color: var(--no400);
+}
+
+.undecided .label {
+    color: var(--n400);
 }
