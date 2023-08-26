@@ -71,13 +71,26 @@
     background: var(--no700);
 }
 
+.base:disabled,
 .base.yes.inactive {
     background: var(--n400);
     box-shadow: inset 0 2px 1px 2px rgba(0, 0, 0, 0.1),
     inset 0 -7px 1px -3px rgba(0, 0, 0, 0.0);
 }
 
+
 .base.inactive .text {
     color: var(--n700);
     translate: 0 1px;
+}
+
+.base:disabled .text {
+    color: var(--n600);
+    translate: 0 1px;
+}
+
+.base:disabled:hover {
+    background: var(--n400);
+    box-shadow: inset 0 2px 1px 2px rgba(0, 0, 0, 0.1),
+    inset 0 -7px 1px -3px rgba(0, 0, 0, 0.0);
 }
