@@ -102,7 +102,7 @@ function BubblePlot({vine, selected, onSelect}) {
     svg.attr("width", width)
       .attr("height", height)
       .attr("viewBox", [-width / 2, -height / 2, width, height])
-      .attr("style", "max-width: 100%; max-height: 100%; height: auto;");
+      .attr("style", "max-width: 100%; max-height: 100%; min-width: 100%; height: auto;");
 
     const link = svg.append("g")
       .attr("stroke", "var(--n300)")
