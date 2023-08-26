@@ -2,4 +2,73 @@
     height: 100vh;
     color: var(--n400);
     background: var(--n900);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8rem;
+}
+
+.grid {
+    width: 100%;
+    height: 100%;
+    background: red;
+
+    grid-template-areas: 
+        "title title"
+        "vote team"
+        "edit team"
+        "bottom bottom";
+
+    grid-template-columns: minmax(0, 6fr) minmax(0, 4fr);
+    grid-template-rows: 15rem 40rem 40rem auto;
+}
+
+.logo {
+    position: absolute;
+    top: 3rem;
+    border-bottom: 1px solid var(--n800);
+}
+
+.logo svg {
+    width: 12rem;
+}
+
+
+
+.vine {
+    width: 10rem;
+    height: 10rem;
+
+    border-radius: 5px;
+
+    background: var(--a400);
+}
+
+.vineContainer {
+    display: flex;
+    gap: 1rem;
+}
+
+.heading {
+    grid-area: title;
+}
+
+.voteVines {
+    grid-area: vote;
+}
+
+.editVines {
+    grid-area: edit;
+}
+
+.users {
+    grid-area: team;
+}
+
+.userBubbles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
