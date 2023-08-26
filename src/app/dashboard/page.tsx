@@ -50,7 +50,7 @@ export default function Dashboard() {
           <h2>Voting Open</h2>
           <div className={dashboard.vineContainer}>
             {vines?.map((vine: any) => 
-              <Link href={'/tool/vote/' + vine._id}><div key={vine.id} className={dashboard.vine}>{vine.name.slice(0, 1)}<div className={dashboard.vineTitle}>Vote on {vine.name}</div></div></Link>
+              <Link key={vine.id}  href={'/tool/vote/' + vine._id}><div className={dashboard.vine}>{vine.name.slice(0, 1)}<div className={dashboard.vineTitle}>Vote on {vine.name}</div></div></Link>
             )}
           </div>
         </div>
@@ -62,7 +62,7 @@ export default function Dashboard() {
             {vines?.map((vine: any) => {
               console.log(vine);
               if (vine.owner === user?.email || vine.owner.email === user?.email ) {
-                return <Link href={'/tool/build/' + vine._id}><div key={vine.id} className={dashboard.vine}>{vine.name.slice(0, 1)} <div className={dashboard.vineTitle}>Edit {vine.name}</div></div></Link>
+                return <Link key={vine.id} href={'/tool/build/' + vine._id}><div className={dashboard.vine}>{vine.name.slice(0, 1)} <div className={dashboard.vineTitle}>Edit {vine.name}</div></div></Link>
               }
             })}
           </div>
