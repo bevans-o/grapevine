@@ -19,8 +19,8 @@ function TreeNode({grape}: {grape: Grape}) {
         </div>
 
         {expanded && childCount > 0 && <div className={tree.nodeChildren}>
-            {grape.grapes.map((grape) => 
-                <TreeNode grape={grape}/>
+            {grape.grapes.map((childGrape) => 
+                <TreeNode grape={childGrape} key={`${grape.id}-${childGrape.id}`}/>
             )}
         </div>}
 

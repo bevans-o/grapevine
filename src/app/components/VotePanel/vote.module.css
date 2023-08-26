@@ -11,6 +11,7 @@
     color: var(--n600);
     max-height: 10rem;
     overflow-y: auto;
+    padding-right: 1rem;
 }
 
 .results {

@@ -13,7 +13,7 @@ function TreeView({vine}: {vine: Vine}) {
 
         <div className={tree.nodes}>
             {vine.bunches.map((bunch: Bunch) => 
-                <TreeBunch bunch={bunch}/>
+                <TreeBunch bunch={bunch} key={bunch.id}/>
             )}
         </div>
         

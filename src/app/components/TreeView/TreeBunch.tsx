@@ -21,7 +21,7 @@ function TreeBunch({bunch}: {bunch: Bunch}) {
 
         {expanded && childCount > 0 && <div className={tree.nodeChildren}>
             {bunch.grapes.map((grape: Grape) => 
-                <TreeNode grape={grape}/>
+                <TreeNode grape={grape} key={`${bunch.id}-${grape.id}`}/>
             )}
         </div>}
 
