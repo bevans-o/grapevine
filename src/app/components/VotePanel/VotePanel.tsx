@@ -36,7 +36,7 @@ function VotePanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null
         getAllUsers().then((res) => {
             setUsers(res)
         }).catch((error) => console.log(error))
-    })
+    }, [])
 
     function isGrape(arg: any): arg is Grape {
         return arg && arg.threshold && typeof(arg.threshold) == 'number';
@@ -56,23 +56,23 @@ function VotePanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null
 
                 {isGrape(selected) && <div className={vote.results}>
                     Results
-                    <div className={vote.yeses}>
+                    {selected.yesses.length > 0 && <div className={vote.yeses}>
                         {selected.yeses.map((user: User) => 
                             <UserBubble user={user} vote="yes" key={user.email}/>
                         )}
-                    </div>
+                    </div>}
 
-                    <div className={vote.nos}>
+                    {selected.nos.length > 0 && <div className={vote.nos}>
                         {selected.nos.map((user: User) => 
                             <UserBubble user={user} vote="no" key={user.email}/>
                         )}
-                    </div>
+                    </div>}
 
-                    <div className={vote.undecided}>
+                    {undecideds.length > 0 && <div className={vote.undecided}>
                         {undecideds.map((user: User) => 
                             <UserBubble user={user} vote="" key={user.email}/>
                         )}
-                    </div>
+                    </div>}
 
                     <div className={vote.threshold}>
                         This grape requires {selected.threshold}% consent to pass.

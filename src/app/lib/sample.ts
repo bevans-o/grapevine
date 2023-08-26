@@ -6,7 +6,7 @@ export const sampleUsers: User[] = [
         name: "Ben Evans",
         image: "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2360&q=80",
         tags: [
-            { name: "frontend" }
+            "frontend"
         ],
         weight: 2,
         role: Role.ADMIN
@@ -16,7 +16,7 @@ export const sampleUsers: User[] = [
         name: "Pippi Pinklewinkle",
         image: "",
         tags: [
-            { name: "frontend" }
+            "frontend"
         ],
         weight: 1,
         role: Role.USER
@@ -26,7 +26,7 @@ export const sampleUsers: User[] = [
         name: "Bert Jongli",
         image: "https://images6.fanpop.com/image/photos/40200000/Trending-Facebook-Profile-Pictures-Of-Boys-emo-boys-40268071-1537-2431.jpg",
         tags: [
-            { name: "backend" }
+            "backend"
         ],
         weight: 2,
         role: Role.USER
@@ -36,7 +36,7 @@ export const sampleUsers: User[] = [
         name: "Risa Pais",
         image: "",
         tags: [
-            { name: "backend" }
+            "backend"
         ],
         weight: 3,
         role: Role.ADMIN
@@ -46,7 +46,7 @@ export const sampleUsers: User[] = [
         name: "Tata Tutu",
         image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
         tags: [
-            { name: "design" }
+            "design"
         ],
         weight: 1,
         role: Role.USER
@@ -56,7 +56,7 @@ export const sampleUsers: User[] = [
         name: "Yessica Noway",
         image: "",
         tags: [
-            { name: "design" }
+            "design"
         ],
         weight: 1,
         role: Role.USER
@@ -66,8 +66,8 @@ export const sampleUsers: User[] = [
         name: "Nancy Neverlyn",
         image: "",
         tags: [
-            { name: "frontend" },
-            { name: "backend" }
+            "frontend",
+            "backend"
         ],
         weight: 1,
         role: Role.USER
@@ -82,7 +82,7 @@ export const sampleGrape: Grape = {
     yeses: [],
     nos: [],
     threshold: 80,
-    tags: [{ name: "frontend" }],
+    tags: ["frontend"],
     grapes: []
 }
 
@@ -106,7 +106,7 @@ export const sampleVine: Vine = {
                     yeses: [sampleUsers[3], sampleUsers[2], sampleUsers[5]],
                     nos: [sampleUsers[0]],
                     threshold: 30,
-                    tags: [{ name: "frontend" }],
+                    tags: ["frontend"],
                     grapes: []
                 },
                 {
@@ -117,7 +117,7 @@ export const sampleVine: Vine = {
                     yeses: [sampleUsers[1]],
                     nos: [sampleUsers[6], sampleUsers[4], sampleUsers[3], sampleUsers[2]],
                     threshold: 80,
-                    tags: [{ name: "frontend" }],
+                    tags: ["frontend"],
                     grapes: [
                         {
                             id: "08adiujurj99df",
@@ -127,7 +127,7 @@ export const sampleVine: Vine = {
                             yeses: [sampleUsers[6], sampleUsers[4], sampleUsers[3], sampleUsers[2], sampleUsers[1], sampleUsers[0]],
                             nos: [sampleUsers[5]],
                             threshold: 80,
-                            tags: [{ name: "frontend" }],
+                            tags: ["frontend"],
                             grapes: []
                         }
                     ]
@@ -147,7 +147,7 @@ export const sampleVine: Vine = {
                     yeses: [],
                     nos: [sampleUsers[1]],
                     threshold: 50,
-                    tags: [{ name: "frontend" }],
+                    tags: ["frontend"],
                     grapes: []
                 },
                 sampleGrape

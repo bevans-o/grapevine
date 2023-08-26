@@ -8,7 +8,7 @@ function BubblePlot({vine, selected, onSelect}) {
   const width = 1500;
   const height = 1300; 
 
-  
+  console.log(selected)
 
   const ref = useRef()
 
@@ -39,7 +39,7 @@ function BubblePlot({vine, selected, onSelect}) {
           .on("end", dragended);
     }
 
-    const svg = d3.select(ref.current);
+    const svg = d3.select("#plot");
 
     const root = d3.hierarchy(vine, (d) => {
       // object is a vine
@@ -76,6 +76,8 @@ function BubblePlot({vine, selected, onSelect}) {
         }
         )
 
+        console.log(children);
+
         return d.grapes.concat(children);
       }
 
@@ -90,12 +92,12 @@ function BubblePlot({vine, selected, onSelect}) {
     const simulation = d3.forceSimulation(nodes)
       .force("link", d3.forceLink(links).id(d => d.id).distance(d => {
         console.log(d);
-        if (d.target.data.owner) return 250;
-        if (d.target.data.email) return 75;
-        return 200;
+        if (d.target.data.owner) return 200;
+        if (d.target.data.email) return 50;
+        return 150;
       }
       ).strength(1))
-      .force("charge", d3.forceManyBody().strength(-20));
+      .force("charge", d3.forceManyBody().strength(-160));
 
     svg.attr("width", width)
       .attr("height", height)
@@ -117,22 +119,25 @@ function BubblePlot({vine, selected, onSelect}) {
       .data(nodes)
       .join("circle")
       .attr("fill", d => {
-        if (d.data.owner) return "var(--n800)";
+        if (d.data.tagged) return "var(--n800)";
+        if (d.data.owner) return "var(--n100)";
         if (d.data.status === GrapeStatus.FAILED) return "var(--no500)";
         if (d.data.status === GrapeStatus.PASSED) return "var(--yes500)";
+        if (d.data.status === GrapeStatus.OPEN) return "var(--b500)";
         return "var(--n300)";
       })
       .attr("stroke", d => {
-        if (d.data.owner) return "var(--n900)";
-        if (d.data.status === GrapeStatus.FAILED) return "var(--no700)";
-        if (d.data.status === GrapeStatus.PASSED) return "var(--yes700)";
+        if (d.data.owner) return "var(--n300)";
+        if (d.data.status === GrapeStatus.FAILED || d.data.vote === "no") return "var(--no700)";
+        if (d.data.status === GrapeStatus.PASSED || d.data.vote === "yes") return "var(--yes700)";
+        if (d.data.status === GrapeStatus.OPEN) return "var(--b700)";
         return "var(--n500)";
       })
       .attr("r", d => {
-        if (d.data.owner) return 50;
-        if (d.data.threshold) return 20;
-        if (d.data.email) return 10;
-        return 30;
+        if (d.data.owner) return 60;
+        if (d.data.threshold) return 26;
+        if (d.data.email) return (5 * d.data.weight) * (d.data.tagged ? 2 : 1);
+        return 40;
       })
       .call(drag(simulation));
 
@@ -150,12 +155,19 @@ function BubblePlot({vine, selected, onSelect}) {
             .attr("cx", d => d.x)
             .attr("cy", d => d.y);
       });
+
+
+      return () => {
+        //svg.remove();
+      }
   }, [])
   
   return (
-    <svg ref={ref}>
+    <div>
+      <svg id="plot">
 
-    </svg>
+      </svg>
+    </div>
   )
 }
 

@@ -2,7 +2,7 @@ export interface User {
     email: string;
     name: string;
     image: string;
-    tags: Tag[]
+    tags: string[]
     weight: number;
     role: Role;
 }
@@ -40,7 +40,7 @@ export interface Grape {
     yeses: User[];
     nos: User[];
     threshold: number;
-    tags: Tag[];
+    tags: string[];
     grapes: Grape[];
 }
 
