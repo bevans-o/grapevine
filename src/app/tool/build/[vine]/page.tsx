@@ -1,3 +1,4 @@
+'use client'
 import BubblePlot from "@/app/components/BubblePlot/BubblePlot";
 import BuildPanel from "@/app/components/BuildPanel/BuildPanel";
 import Menu from "@/app/components/Menu/Menu";

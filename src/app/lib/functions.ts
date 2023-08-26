@@ -1,6 +1,7 @@
 import { Callback } from "mongodb";
 import { Grape, User, Vine, Role } from "./types";
 import axios from "axios";
+import { ObjectId } from "mongodb";
 
 
 
@@ -34,7 +35,9 @@ export async function getAllUsers(): Promise<Array<User>> {
 
 // function getAllVines(): Vine[] {}
 
-// function createVine(): Vine {}
+export async function createVine(user : User): Promise<ObjectId> {
+    return (await axios.post('/api/createVine', {user : user})).data
+}
 
 // function voteYes(grapeId: string, voterId: string) {} // also update status
 
