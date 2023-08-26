@@ -28,7 +28,7 @@ export default function Vote({ params }: {params: {vine: string}} ) {
 
     return (
       <>
-        <Menu mode="Voting" title={params.vine}/>
+        <Menu mode="Voting" title={activeVine.name}/>
         <TreeView vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
         <BubblePlot vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
         <VotePanel vine={activeVine} selected={selected} user={user!}/>

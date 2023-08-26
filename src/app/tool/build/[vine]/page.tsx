@@ -19,7 +19,7 @@ export default function Build({ params }: {params: {vine: string}} ) {
   
     return (
       <>
-        <Menu mode="Building" title={params.vine}/>
+        <Menu mode="Building" title={activeVine.name}/>
         <TreeView vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
         <BubblePlot vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
         <BuildPanel vine={activeVine} selected={selected}/>
