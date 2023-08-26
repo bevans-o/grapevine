@@ -22,7 +22,7 @@
         "edit team"
         "bottom bottom";
 
-    grid-template-columns: minmax(0, 6fr) minmax(0, 4fr);
+    grid-template-columns: minmax(0, 8fr) minmax(0, 2fr);
     grid-template-rows: 10rem 16rem 16rem auto;
 }
 
@@ -104,6 +104,7 @@
 .vineContainer {
     display: flex;
     gap: 1rem;
+    overflow-x: auto;
 }
 
 .heading {
@@ -130,6 +131,10 @@
 
 .users {
     grid-area: team;
+    padding: 2rem 2rem 2.75rem;
+    border: 1px solid var(--n800);
+    height: fit-content;
+    border-radius: 6px;
 }
 
 .userBubbles {
