@@ -56,7 +56,7 @@ function VotePanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null
 
                 {isGrape(selected) && <div className={vote.results}>
                     Results
-                    {selected.yesses.length > 0 && <div className={vote.yeses}>
+                    {selected.yeses.length > 0 && <div className={vote.yeses}>
                         {selected.yeses.map((user: User) => 
                             <UserBubble user={user} vote="yes" key={user.email}/>
                         )}
