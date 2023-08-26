@@ -1,7 +1,7 @@
 import { Grape, GrapeStatus, Role, Vine } from "./types";
 
 const sampleUser = {
-    id: "bcevans@student.unimelb.edu.au",
+    email: "bcevans@student.unimelb.edu.au",
     name: "Ben Evans",
     image: "",
     tags: [
