@@ -4,13 +4,24 @@ import tree from './tree.module.css'
 import { Bunch, Grape } from '@/app/lib/types';
 import TreeNode from './TreeNode';
 
-function TreeBunch({bunch}: {bunch: Bunch}) {
+function TreeBunch({bunch, selected, onSelect}: {bunch: Bunch, selected: Bunch | Grape | null, onSelect: Function}) {
     const [expanded, setExpanded] = useState(false);
     const childCount = bunch.grapes.length;
 
   return (
     <div>
-        <div className={`${tree.node} ${expanded ? tree.expanded : ""} ${childCount > 0 ? tree.hasChildren : ""}`} onClick={() => setExpanded(!expanded)}>
+        <div 
+            onClick={() => {
+                if (selected?.id === bunch.id) {
+                    onSelect(null)
+                }
+                else {
+                    onSelect(bunch)
+                }
+                
+                setExpanded(!expanded)
+            }}
+            className={`${tree.node} ${expanded ? tree.expanded : ""} ${selected?.id === bunch.id ? tree.selected : ""} ${childCount > 0 ? tree.hasChildren : ""}`}>
             {bunch.name}
             {childCount != 0 && 
             <div className={tree.iconContainer}>
@@ -21,7 +32,7 @@ function TreeBunch({bunch}: {bunch: Bunch}) {
 
         {expanded && childCount > 0 && <div className={tree.nodeChildren}>
             {bunch.grapes.map((grape: Grape) => 
-                <TreeNode grape={grape} key={`${bunch.id}-${grape.id}`}/>
+                <TreeNode grape={grape} selected={selected} onSelect={(node: Bunch | Grape | null) => onSelect(node)} key={`${bunch.id}-${grape.id}`}/>
             )}
         </div>}
 

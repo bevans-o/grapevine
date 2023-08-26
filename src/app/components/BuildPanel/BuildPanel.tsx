@@ -6,13 +6,14 @@ import tool from '@/app/tool/tool.module.css'
 import button from './../Button/button.module.css'
 import AddBunch from './AddBunch'
 import AddGrape from './AddGrape'
+import { Vine, Bunch, Grape } from '@/app/lib/types'
 
 export enum BuildMode {
   BUNCH,
   GRAPE
 }
 
-function BuildPanel() {
+function BuildPanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null}) {
   const [mode, setMode] = useState(BuildMode.GRAPE);
 
   return (

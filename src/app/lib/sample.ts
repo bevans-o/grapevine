@@ -91,6 +91,7 @@ export const sampleVine: Vine = {
     name: "Test Vine",
     desc: "This is a vine for testing purposes. Yum yum.",
     owner: users[3],
+    grapes: [],
     bunches: [
         {
             id: "1s098df01239",
@@ -119,7 +120,7 @@ export const sampleVine: Vine = {
                     tags: [{ name: "frontend" }],
                     grapes: [
                         {
-                            id: "01kkdf002o34",
+                            id: "08adiujurj99df",
                             name: "Urbanist as primary font family.",
                             desc: "",
                             status: GrapeStatus.PASSED,

@@ -2,18 +2,17 @@
 
 import React from 'react'
 import tree from './tree.module.css'
-import TreeNode from './TreeNode'
-import { Bunch, Vine } from '@/app/lib/types';
+import { Bunch, Grape, Vine } from '@/app/lib/types';
 import TreeBunch from './TreeBunch';
 
-function TreeView({vine}: {vine: Vine}) {
+function TreeView({vine, selected, onSelect}: {vine: Vine, selected: Bunch | Grape | null, onSelect: Function}) {
   return (
     <div className={tree.sidebar}>
         <h2 className={tree.title}>{vine.name}</h2>
 
         <div className={tree.nodes}>
             {vine.bunches.map((bunch: Bunch) => 
-                <TreeBunch bunch={bunch} key={bunch.id}/>
+                <TreeBunch bunch={bunch} key={bunch.id} selected={selected} onSelect={(node: Bunch | Grape | null) => onSelect(node)}/>
             )}
         </div>
         
