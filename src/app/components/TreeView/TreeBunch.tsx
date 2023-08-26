@@ -12,14 +12,26 @@ function TreeBunch({bunch, selected, onSelect}: {bunch: Bunch, selected: Bunch |
     <div>
         <div 
             onClick={() => {
-                if (selected?.id === bunch.id) {
-                    onSelect(null)
+                if (expanded) {
+                    if (selected?.id !== bunch.id) {
+                        onSelect(bunch)
+                    }
+                    else {
+                        onSelect(null)
+                        setExpanded(!expanded)
+                    }
                 }
                 else {
-                    onSelect(bunch)
+                    if (selected?.id === bunch.id) {
+                        onSelect(null)
+    
+                    }
+                    else {
+                        onSelect(bunch)
+                    }
+                    
+                    setExpanded(!expanded)
                 }
-                
-                setExpanded(!expanded)
             }}
             className={`${tree.node} ${expanded ? tree.expanded : ""} ${selected?.id === bunch.id ? tree.selected : ""} ${childCount > 0 ? tree.hasChildren : ""}`}>
             {bunch.name}

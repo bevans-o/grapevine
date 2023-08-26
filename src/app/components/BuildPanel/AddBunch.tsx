@@ -29,7 +29,7 @@ function AddBunch({vineId} : AddBunchProps) {
         <div className={tool.toolPanelSection}>
 
             <input onChange={(e) => setName(e.target.value)} type='text' placeholder='Name'></input>
-            <textarea onChange={(e) => setDesc(e.target.value)} placeholder='Description'></textarea>
+            <textarea onChange={(e) => setDesc(e.target.value)} rows={5} placeholder='Description'></textarea>
             
         </div>
 

@@ -34,3 +34,46 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.panel input,
+.panel textarea {
+    resize:none;
+    font-family: inherit;
+    padding: 0.5rem;
+
+    border: 1px solid var(--n300);
+    border-radius: 5px;
+}
+
+.panel input:focus-within,
+.panel textarea:focus-within {
+    outline-color: var(--yes400);
+}
+
+.tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: var(--n800);
+    color: var(--n200);
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+
+    box-shadow: inset 0 -6px 1px -3px rgba(0, 0, 0, 0.5), 
+    inset 0 0px 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.threshold {
+    padding: 0 1rem;
+    padding-top: 1rem;
+    color: var(--n600);
+    font-size: 0.9rem;
+}
+
+.thresholdLimit {
+    font-weight: 600;
+    color: var(--n700);
+}
