@@ -1,0 +1,27 @@
+.panel {
+    justify-content: flex-start;
+}
+
+.toggle {
+    display: flex;
+    gap: 0;
+    width: 100%;
+}
+
+.toggle > * {
+    flex-grow: 1;
+}
+
+.toggle .toggleBunch {
+    border-radius: 5px 0 0 5px;
+}
+
+.toggle .toggleGrape {
+    border-radius: 0 5px 5px 0;
+}
+
+.tip {
+    color: var(--n600);
+    font-size: 0.8rem;
+    padding-top: 0.5rem;
+}
