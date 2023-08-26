@@ -30,7 +30,9 @@ export async function getVine(vineId : string): Promise<Vine> {
     return (await axios.post('/api/getVine', {vineId : vineId})).data
 }
 
-// function addGrape(parentId: string, grape: Grape) {}
+export async function addGrape(vineId: string, grape: Grape, bunchId: string, parentGrape: string) {
+    return (await axios.post('/api/addNewGrape', {vineId: vineId, grape: grape, bunchId : bunchId, parentGrape : parentGrape})).data
+}
 
 export async function addNewBunch(bunch : Bunch, vineId : string): Promise<ObjectId> {
     return (await axios.post('/api/addNewBunch', {bunch : bunch, vineId: vineId})).data

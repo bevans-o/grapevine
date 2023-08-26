@@ -3,13 +3,34 @@ import tool from '@/app/tool/tool.module.css'
 import build from './build.module.css'
 import Button from '../Button/Button'
 import Slider from '@mui/material/Slider'
-import { Grape, Tag } from '@/app/lib/types'
+import { Bunch, Grape, Tag, GrapeStatus } from '@/app/lib/types'
+import { addGrape } from '@/app/lib/functions'
 
-function AddGrape() {
+
+
+function AddGrape({vineId, selected} : {vineId: string, selected : Bunch | Grape | null}) {
     const [name, setName] = useState("");
     const [desc, setDesc] = useState("");
     const [threshold, setThreshold] = useState(75);
     const [tags, setTags] = useState<string[]>([]);
+
+    const handleSave = () => {
+      console.log("save");
+      let grape : Grape = {id: "", name: name, desc: desc, threshold: threshold, status: GrapeStatus.OPEN, yeses: [], nos: [], tags: tags, grapes: []}
+      if (name && desc && threshold) {
+        if (selected) {
+          if (isGrape(selected)) {
+            addGrape(vineId, grape, "", selected.id);
+          } else {
+            addGrape(vineId, grape, selected.id, "")
+          }
+        } else {
+          addGrape(vineId, grape, "", "")
+        }
+        
+      }
+
+    }
 
     const marks = [
         {
@@ -76,12 +97,16 @@ function AddGrape() {
         </div>
 
         <div className={tool.toolPanelSection}>
-            <Button text='Add' type='yes' onClick={() => console.log("save")}/>
+            <Button text='Add' type='yes' onClick={() => handleSave()}/>
             <Button text='Cancel' type='' onClick={() => console.log("cancel")}/>
         </div>
     </div>
     
   )
+}
+
+function isGrape(arg: any): arg is Grape {
+  return arg && arg.threshold && typeof(arg.threshold) == 'number';
 }
 
 export default AddGrape
