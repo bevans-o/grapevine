@@ -13,12 +13,12 @@ interface AddBunchProps {
 
 
 function AddBunch({vineId} : AddBunchProps) {
-    const [name, setName] = useState("");
+    const [name, setName] = useState("New Untitled Vine");
     const [desc, setDesc] = useState("");
 
     const handleSave = () => {
       if (name && desc) {
-        let bunch : Bunch = {id: generateID(32), name: name, desc: desc, grapes: []}
+        let bunch : Bunch = {id: "", name: name, desc: desc, grapes: []}
         addNewBunch(bunch, vineId);
       }
 

@@ -6,7 +6,7 @@ import TreeNode from './TreeNode';
 
 function TreeBunch({bunch, selected, onSelect}: {bunch: Bunch, selected: Bunch | Grape | null, onSelect: Function}) {
     const [expanded, setExpanded] = useState(false);
-    const childCount = bunch.grapes.length;
+    const childCount = bunch.grapes?.length ?? 0;
 
   return (
     <div>
