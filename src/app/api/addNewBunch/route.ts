@@ -9,7 +9,6 @@ import { ObjectId } from 'mongodb';
 export async function POST(req: Request, res: Response) {
     const request = await req.json();
     const response = await addBunch(request.bunch, request.vineId);
-    console.log(request.vineId)
     return NextResponse.json(response);
 
 }

@@ -7,7 +7,6 @@ import { ObjectId } from 'mongodb';
 
 
 export async function POST(req: Request, res: Response) {
-    console.log("routing correctly")
     const request = await req.json();
     const response = await addGrape(request.grape, request.vineId, request.bunchId, request.parentId);
     return NextResponse.json(response);

@@ -55,8 +55,6 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Bunch | Grape 
         })
     }
 
-    console.log(currentWeight);
-    console.log(possibleWeight);
 
     let percentage = (possibleWeight > 0) ? Math.round(100 * (currentWeight / possibleWeight)) : 0;
 

@@ -19,10 +19,13 @@ export default function Vote({ params }: {params: {vine: string}} ) {
 
   useEffect(() => {
     (session?.user && getUser(session.user.email!, setUser))
+    console.log("vineId " + params.vine)
     getVine(params.vine).then((res) => {
       setActiveVine(res)
     })
+    console.log(activeVine);
   }, [])
+
 
 
 
