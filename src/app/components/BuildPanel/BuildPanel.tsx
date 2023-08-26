@@ -4,8 +4,6 @@ import React, { useState } from 'react'
 import build from './build.module.css'
 import tool from '@/app/tool/tool.module.css'
 import button from './../Button/button.module.css'
-import Button from '../Button/Button'
-import { Slider } from '@mui/material'
 import AddBunch from './AddBunch'
 import AddGrape from './AddGrape'
 
@@ -15,7 +13,7 @@ export enum BuildMode {
 }
 
 function BuildPanel() {
-  const [mode, setMode] = useState(BuildMode.BUNCH);
+  const [mode, setMode] = useState(BuildMode.GRAPE);
 
   return (
     <div className={tool.toolPanel + " " + build.panel}>

@@ -1,5 +1,5 @@
 .panel {
-    justify-content: flex-start;
+    justify-content: flex-start !important;
 }
 
 .toggle {
@@ -24,4 +24,13 @@
     color: var(--n600);
     font-size: 0.8rem;
     padding-top: 0.5rem;
+}
+
+.subpanel {
+    flex-grow: 1;
+    padding-top: 1rem;
+    border-top: 1px solid var(--n300);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
