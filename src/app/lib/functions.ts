@@ -1,5 +1,5 @@
 import { Callback } from "mongodb";
-import { Grape, User, Vine, Role } from "./types";
+import { Grape, User, Vine, Role, Bunch } from "./types";
 import axios from "axios";
 import { ObjectId } from "mongodb";
 
@@ -31,6 +31,10 @@ export async function getVine(vineId : string): Promise<Vine> {
 }
 
 // function addGrape(parentId: string, grape: Grape) {}
+
+export async function addNewBunch(bunch : Bunch, vineId : string): Promise<ObjectId> {
+    return (await axios.post('/api/addNewBunch', {bunch : bunch, vineId: vineId})).data
+}
 
 export async function getAllUsers(): Promise<Array<User>> {
     return (await axios.post('/api/getAllUsers')).data
