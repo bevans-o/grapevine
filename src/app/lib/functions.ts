@@ -28,7 +28,9 @@ export async function getUser(email: string, setUser: Function) {
 
 // function addGrape(parentId: string, grape: Grape) {}
 
-// function getAllUsers(): User[] {}
+export async function getAllUsers(): Promise<Array<User>> {
+    return (await axios.post('/api/getAllUsers')).data
+}
 
 // function getAllVines(): Vine[] {}
 
