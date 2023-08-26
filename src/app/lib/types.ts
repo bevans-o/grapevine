@@ -21,14 +21,14 @@ export interface Vine {
     name: string;
     desc: string;
     owner: User;
-    bunches?: Bunch[];
+    bunches: Bunch[];
 }
 
 export interface Bunch {
     id: string;
     name: string;
     desc: string;
-    grapes?: Grape[]
+    grapes: Grape[]
 }
 
 export interface Grape {
@@ -38,10 +38,9 @@ export interface Grape {
     status: GrapeStatus;
     yeses: User[];
     nos: User[];
-    undecided: User[];
     threshold: number;
     tags: Tag[];
-    grapes?: Grape[];
+    grapes: Grape[];
 }
 
 export enum GrapeStatus {

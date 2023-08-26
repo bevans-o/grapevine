@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import tree from './tree.module.css'
-import { Grape } from '@/app/lib/types';
+import { Bunch, Grape } from '@/app/lib/types';
+import TreeNode from './TreeNode';
 
-function TreeNode({grape}: {grape: Grape}) {
+function TreeBunch({bunch}: {bunch: Bunch}) {
     const [expanded, setExpanded] = useState(false);
-    const childCount = grape.grapes.length;
+    const childCount = bunch.grapes.length;
 
   return (
     <div>
         <div className={`${tree.node} ${expanded ? tree.expanded : ""} ${childCount > 0 ? tree.hasChildren : ""}`} onClick={() => setExpanded(!expanded)}>
-            {grape.name}
+            {bunch.name}
             {childCount != 0 && 
             <div className={tree.iconContainer}>
                 <KeyboardArrowDownIcon />
@@ -19,7 +20,7 @@ function TreeNode({grape}: {grape: Grape}) {
         </div>
 
         {expanded && childCount > 0 && <div className={tree.nodeChildren}>
-            {grape.grapes.map((grape) => 
+            {bunch.grapes.map((grape: Grape) => 
                 <TreeNode grape={grape}/>
             )}
         </div>}
@@ -29,4 +30,4 @@ function TreeNode({grape}: {grape: Grape}) {
   )
 }
 
-export default TreeNode
+export default TreeBunch
