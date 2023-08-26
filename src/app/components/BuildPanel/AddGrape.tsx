@@ -97,8 +97,8 @@ function AddGrape({vineId, selected} : {vineId: string, selected : Bunch | Grape
         </div>
 
         <div className={tool.toolPanelSection}>
-            <Button text='Add' type='yes' onClick={() => handleSave()}/>
-            <Button text='Cancel' type='' onClick={() => console.log("cancel")}/>
+            <Button text='Add' type='yes' disabled={false} onClick={() => handleSave()}/>
+            <Button text='Cancel' type='' disabled={false} onClick={() => console.log("cancel")}/>
         </div>
     </div>
     

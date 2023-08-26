@@ -4,7 +4,6 @@ import tool from '@/app/tool/tool.module.css'
 import Button from '../Button/Button';
 import { addNewBunch } from '../../lib/functions'
 import { Bunch } from '../../lib/types'
-import generateID from '@/app/lib/generateId';
 
 interface AddBunchProps {
   vineId: string;
@@ -34,8 +33,8 @@ function AddBunch({vineId} : AddBunchProps) {
         </div>
 
         <div className={tool.toolPanelSection}>
-            <Button text='Save' type='yes' onClick={() => { console.log("save"); handleSave()}}/>
-            <Button text='Cancel' type='' onClick={() => console.log("cancel")}/>
+            <Button text='Save' type='yes' disabled={false} onClick={() => { console.log("save"); handleSave()}}/>
+            <Button text='Cancel' type='' disabled={false} onClick={() => console.log("cancel")}/>
         </div>
     </div>
   )
