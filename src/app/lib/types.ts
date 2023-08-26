@@ -22,6 +22,7 @@ export interface Vine {
     desc: string;
     owner: User;
     bunches: Bunch[];
+    grapes: Grape[];
 }
 
 export interface Bunch {

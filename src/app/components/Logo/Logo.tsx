@@ -94,7 +94,7 @@ function Logo({ type }: {type: string}) {
       <feBlend mode="normal" in2="effect2_innerShadow_8_695" result="effect3_innerShadow_8_695"/>
       </filter>
       <filter id="filter1_ii_8_695" x="4" y="5.5" width="12.396" height="12.1252" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feFlood floodOpacity="0" result="BackgroundImageFix"/>
       <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
       <feOffset dy="-1"/>

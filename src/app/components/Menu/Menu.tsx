@@ -21,7 +21,7 @@ function Menu({mode, title}: {mode: string, title: string}) {
 
    useEffect(() => {
     (session?.user && getUser(session.user.email!, setUser))
-    })
+    }, [session])
 
 
 
