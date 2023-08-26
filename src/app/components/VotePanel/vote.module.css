@@ -12,10 +12,7 @@
     max-height: 10rem;
     overflow-y: auto;
     padding-right: 1rem;
-}
-
-.results {
-    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .yeses,

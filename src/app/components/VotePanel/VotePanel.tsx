@@ -4,13 +4,33 @@ import React, { useEffect, useState } from 'react'
 import vote from './vote.module.css'
 import tool from '@/app/tool/tool.module.css'
 import UserBubble from '../User/User'
-import { Bunch, Grape, User, Vine } from '../../lib/types'
+import { Bunch, Grape, GrapeStatus, User, Vine } from '../../lib/types'
 import { getAllUsers } from '@/app/lib/functions'
 import Button from '../Button/Button'
+import { sampleUsers } from '@/app/lib/sample'
 
 function VotePanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null}) {
-    const [users, setUsers] = useState<Array<User>>();
+    const [users, setUsers] = useState<Array<User>>(sampleUsers);
 
+    const undecideds = users.filter((user: User) => {
+        let voted = false;
+
+        if (isGrape(selected)) {
+            selected.yeses.forEach((yes: User) => {
+                if (yes.email === user.email) {
+                    voted = true;
+                }
+            })
+
+            selected.nos.forEach((no: User) => {
+                if (no.email === user.email) {
+                    voted = true;
+                }
+            })
+        }
+
+        return !voted;
+    })
 
     useEffect(() => {
         getAllUsers().then((res) => {
@@ -18,6 +38,9 @@ function VotePanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null
         }).catch((error) => console.log(error))
     })
 
+    function isGrape(arg: any): arg is Grape {
+        return arg && arg.threshold && typeof(arg.threshold) == 'number';
+    }
 
   return (
     
@@ -31,30 +54,28 @@ function VotePanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null
                 </h2>
                 {selected.desc != "" && <p className={vote.description}>{selected.desc}</p>}
 
-                <div className={vote.results}>
+                {isGrape(selected) && <div className={vote.results}>
                     Results
                     <div className={vote.yeses}>
-                        <UserBubble name="Yessica Wingleman" vote="yes"/>
-                        <UserBubble name="Yessica Wingleman" vote="yes"/>
-                        <UserBubble name="Yessica Wingleman" vote="yes"/>
-                        <UserBubble name="Yessica Wingleman" vote="yes"/>
+                        {selected.yeses.map((user: User) => 
+                            <UserBubble user={user} vote="yes" key={user.email}/>
+                        )}
                     </div>
 
                     <div className={vote.nos}>
-                        <UserBubble name="Noel Nevermind" vote="no"/>
-                        <UserBubble name="Noel Nevermind" vote="no"/>
+                        {selected.nos.map((user: User) => 
+                            <UserBubble user={user} vote="no" key={user.email}/>
+                        )}
                     </div>
 
                     <div className={vote.undecided}>
-                        <UserBubble name="Neville Participati" vote=""/>
-                        <UserBubble name="Neville Participati" vote=""/>
-                        <UserBubble name="Neville Participati" vote=""/>
-                        <UserBubble name="Neville Participati" vote=""/>
-                        <UserBubble name="Neville Participati" vote=""/>
+                        {undecideds.map((user: User) => 
+                            <UserBubble user={user} vote="" key={user.email}/>
+                        )}
                     </div>
 
                     <div className={vote.threshold}>
-                        This grape requires 80% consent to pass.
+                        This grape requires {selected.threshold}% consent to pass.
 
                         <div className={`${vote.status} ${vote.failing}`}>
                             67% - FAILING
@@ -62,13 +83,13 @@ function VotePanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null
                     </div>
 
                     
-                </div>
+                </div>}
             </div>
 
-            <div className={tool.toolPanelSection}>
+            {isGrape(selected) && <div className={tool.toolPanelSection}>
                 <Button text='Yes' type='yes' onClick={() => {console.log("yes")}}/>
                 <Button text='No' type='no' onClick={() => {console.log("no")}}/>
-            </div>
+            </div>}
         </>
         }
 

@@ -42,6 +42,11 @@
 }
 
 .main .item {
+    background: transparent;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--n400);
+    cursor: pointer;
     padding: 0.25rem 0.5rem;
     border: 1px solid transparent;
     border-radius: 5px;

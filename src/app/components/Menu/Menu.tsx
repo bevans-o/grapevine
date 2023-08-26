@@ -50,7 +50,7 @@ function Menu({mode, title}: {mode: string, title: string}) {
                 New
             </button>
 
-            <Link href="/login"><UserBubble vote='yes' name=""/></Link>
+            {user && <Link href="/login"><UserBubble vote='yes' user={user}/></Link>}
         </div>
         
     </nav>

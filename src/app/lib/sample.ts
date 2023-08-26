@@ -1,6 +1,6 @@
 import { Grape, GrapeStatus, Role, User, Vine } from "./types";
 
-const users: User[] = [
+export const sampleUsers: User[] = [
     {
         email: "bcevans@student.unimelb.edu.au",
         name: "Ben Evans",
@@ -90,7 +90,7 @@ export const sampleVine: Vine = {
     id: "2834872384",
     name: "Test Vine",
     desc: "This is a vine for testing purposes. Yum yum.",
-    owner: users[3],
+    owner: sampleUsers[3],
     grapes: [],
     bunches: [
         {
@@ -103,8 +103,8 @@ export const sampleVine: Vine = {
                     name: "All text should be pink.",
                     desc: "",
                     status: GrapeStatus.OPEN,
-                    yeses: [users[3], users[2], users[5]],
-                    nos: [users[0]],
+                    yeses: [sampleUsers[3], sampleUsers[2], sampleUsers[5]],
+                    nos: [sampleUsers[0]],
                     threshold: 30,
                     tags: [{ name: "frontend" }],
                     grapes: []
@@ -114,8 +114,8 @@ export const sampleVine: Vine = {
                     name: "Papyrus as primary font family.",
                     desc: "",
                     status: GrapeStatus.FAILED,
-                    yeses: [users[1]],
-                    nos: [users[6], users[4], users[3], users[2]],
+                    yeses: [sampleUsers[1]],
+                    nos: [sampleUsers[6], sampleUsers[4], sampleUsers[3], sampleUsers[2]],
                     threshold: 80,
                     tags: [{ name: "frontend" }],
                     grapes: [
@@ -124,8 +124,8 @@ export const sampleVine: Vine = {
                             name: "Urbanist as primary font family.",
                             desc: "",
                             status: GrapeStatus.PASSED,
-                            yeses: [users[6], users[4], users[3], users[2], users[1], users[0]],
-                            nos: [users[5]],
+                            yeses: [sampleUsers[6], sampleUsers[4], sampleUsers[3], sampleUsers[2], sampleUsers[1], sampleUsers[0]],
+                            nos: [sampleUsers[5]],
                             threshold: 80,
                             tags: [{ name: "frontend" }],
                             grapes: []
@@ -145,7 +145,7 @@ export const sampleVine: Vine = {
                     desc: "",
                     status: GrapeStatus.OPEN,
                     yeses: [],
-                    nos: [users[1]],
+                    nos: [sampleUsers[1]],
                     threshold: 50,
                     tags: [{ name: "frontend" }],
                     grapes: []

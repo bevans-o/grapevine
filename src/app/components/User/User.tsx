@@ -1,13 +1,14 @@
 import React from 'react'
-import user from './user.module.css'
+import userBubble from './user.module.css'
+import { User } from '@/app/lib/types'
 
-function User({name, vote}: {name: string, vote: string}) {
+function User({user, vote}: {user: User, vote: string}) {
   return (
-    <div className={`${user.token} ${vote === "yes" && user.yes} ${vote === "no" && user.no}`}>
-        <img alt=""/>
+    <div className={`${userBubble.token} ${vote === "yes" && userBubble.yes} ${vote === "no" && userBubble.no}`}>
+        {user.image && <img className={userBubble.image} src={user.image} alt={user.name}/>}
 
-        {name != "" && <div className={user.tooltip}>
-            {name}
+        {user.name != "" && <div className={userBubble.tooltip}>
+            {user.name}
         </div>}
 
     </div>
