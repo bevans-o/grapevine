@@ -11,10 +11,13 @@ export default function Dashboard() {
   const [vines, setVines] = useState<Array<Vine>>();
 
   useEffect(() => {
+    
     (session?.user && getUser(session.user.email!, setUser))
+
     getAllVines().then((res) => {
       setVines(res)
   }).catch((error) => console.log(error))
+
     getVine("64e9a34e683720afe532342b").then((res) => {
       setVine(res);
       console.log(res);
