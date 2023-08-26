@@ -1,12 +1,24 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import vote from './vote.module.css'
 import tool from '@/app/tool/tool.module.css'
-import User from '../User/User'
+import UserBubble from '../User/User'
+import { User } from '../../lib/types'
+import { getAllUsers } from '@/app/lib/functions'
 import Button from '../Button/Button'
 
 function VotePanel() {
+    const [users, setUsers] = useState<Array<User>>();
+
+
+    useEffect(() => {
+        getAllUsers().then((res) => {
+            setUsers(res)
+        }).catch((error) => console.log(error))
+    })
+
+
   return (
     <div className={tool.toolPanel + " " + vote.panel}>
         
@@ -20,23 +32,23 @@ function VotePanel() {
             <div className={vote.results}>
                 Results
                 <div className={vote.yeses}>
-                    <User name="Yessica Wingleman" vote="yes"/>
-                    <User name="Yessica Wingleman" vote="yes"/>
-                    <User name="Yessica Wingleman" vote="yes"/>
-                    <User name="Yessica Wingleman" vote="yes"/>
+                    <UserBubble name="Yessica Wingleman" vote="yes"/>
+                    <UserBubble name="Yessica Wingleman" vote="yes"/>
+                    <UserBubble name="Yessica Wingleman" vote="yes"/>
+                    <UserBubble name="Yessica Wingleman" vote="yes"/>
                 </div>
 
                 <div className={vote.nos}>
-                    <User name="Noel Nevermind" vote="no"/>
-                    <User name="Noel Nevermind" vote="no"/>
+                    <UserBubble name="Noel Nevermind" vote="no"/>
+                    <UserBubble name="Noel Nevermind" vote="no"/>
                 </div>
 
                 <div className={vote.undecided}>
-                    <User name="Neville Participati" vote=""/>
-                    <User name="Neville Participati" vote=""/>
-                    <User name="Neville Participati" vote=""/>
-                    <User name="Neville Participati" vote=""/>
-                    <User name="Neville Participati" vote=""/>
+                    <UserBubble name="Neville Participati" vote=""/>
+                    <UserBubble name="Neville Participati" vote=""/>
+                    <UserBubble name="Neville Participati" vote=""/>
+                    <UserBubble name="Neville Participati" vote=""/>
+                    <UserBubble name="Neville Participati" vote=""/>
                 </div>
 
                 <div className={vote.threshold}>
