@@ -31,11 +31,11 @@ function BuildPanel({vine, selected, onChange}: {vine: Vine, selected: Bunch | G
         
         
         {mode == BuildMode.BUNCH &&
-          <AddBunch vineId={vine.id} selected={selected} onSave={() => setTimeout(onChange(), 1500)}/>
+          <AddBunch vineId={vine.id} selected={selected} onSave={() => onChange()}/>
         }
 
         {mode == BuildMode.GRAPE && 
-          <AddGrape vineId={vine.id} selected={selected} onSave={() => setTimeout(onChange(), 1500)}/>
+          <AddGrape vineId={vine.id} selected={selected} onSave={() => onChange()}/>
         }
         
     </div>

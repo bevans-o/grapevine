@@ -26,7 +26,7 @@ export default function Build({ params }: {params: {vine: string}} ) {
         <Menu mode="Building" title={activeVine.name}/>
         <TreeView vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
         <BubblePlot vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
-        <BuildPanel vine={activeVine} selected={selected} onChange={() => refreshVine()}/>
+        <BuildPanel vine={activeVine} selected={selected} onChange={() => setTimeout(refreshVine, 2000)}/>
       </>
     )
   }
