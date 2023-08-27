@@ -8,13 +8,14 @@ import { useRouter } from 'next/navigation';
 
 interface AddBunchProps {
   vineId: string;
-  selected: Grape | Bunch | null
+  selected: Grape | Bunch | null;
+  onSave: Function;
 }
 
 
 
-function AddBunch({vineId, selected} : AddBunchProps) {
-    const [name, setName] = useState("New Untitled Vine");
+function AddBunch({vineId, selected, onSave} : AddBunchProps) {
+    const [name, setName] = useState("");
     const [desc, setDesc] = useState("");
 
     const router = useRouter();
@@ -26,13 +27,13 @@ function AddBunch({vineId, selected} : AddBunchProps) {
       }
 
 
+      console.log()
+
       setName("");
       setDesc("");
 
 
-      setTimeout(() => {
-        router.push("/tool/build/" + vineId)
-      }, 500);
+      onSave();
 
     }
     
@@ -41,8 +42,8 @@ function AddBunch({vineId, selected} : AddBunchProps) {
         <div className={tool.toolPanelSection}>
             <p className={build.parent}>Adding bunch to vine root.</p>
 
-            <input onChange={(e) => setName(e.target.value)} type='text' placeholder='Name'></input>
-            <textarea onChange={(e) => setDesc(e.target.value)} rows={5} placeholder='Description'></textarea>
+            <input value={name} onChange={(e) => setName(e.target.value)} type='text' placeholder='Name'></input>
+            <textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows={5} placeholder='Description'></textarea>
             
         </div>
 

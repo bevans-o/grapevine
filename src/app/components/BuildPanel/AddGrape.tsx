@@ -5,14 +5,17 @@ import Button from '../Button/Button'
 import Slider from '@mui/material/Slider'
 import { Bunch, Grape, Tag, GrapeStatus } from '@/app/lib/types'
 import { addGrape } from '@/app/lib/functions'
+import { useRouter } from 'next/navigation'
 
 
 
-function AddGrape({vineId, selected} : {vineId: string, selected : Bunch | Grape | null}) {
+function AddGrape({vineId, selected, onSave} : {vineId: string, selected : Bunch | Grape | null, onSave : Function}) {
     const [name, setName] = useState("");
     const [desc, setDesc] = useState("");
     const [threshold, setThreshold] = useState(75);
     const [tags, setTags] = useState<string[]>([]);
+
+    const router = useRouter();
 
     const handleSave = () => {
       console.log("save");
@@ -34,6 +37,9 @@ function AddGrape({vineId, selected} : {vineId: string, selected : Bunch | Grape
       setDesc("");
       setThreshold(75);
       setTags([]);
+
+
+      onSave();
 
     }
 
@@ -57,8 +63,8 @@ function AddGrape({vineId, selected} : {vineId: string, selected : Bunch | Grape
         <div className={tool.toolPanelSection}>
             {selected && <p className={build.parent}>Adding grape to <strong>{selected.name}</strong></p>}
 
-            <input onChange={(e) => setName(e.target.value)} type='text' placeholder='Proposal'></input>
-            <textarea onChange={(e) => setDesc(e.target.value)} rows={5} placeholder='Description'></textarea>
+            <input value={name} onChange={(e) => setName(e.target.value)} type='text' placeholder='Proposal'></input>
+            <textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows={5} placeholder='Description'></textarea>
 
             <div className={build.tags}>
               {tags.map((tag, index) => 

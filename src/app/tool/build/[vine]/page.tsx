@@ -13,9 +13,12 @@ export default function Build({ params }: {params: {vine: string}} ) {
   const [activeVine, setActiveVine] = useState<Vine>(emptyVine);
   const [selected, setSelected] = useState<Grape | Bunch | null>(null);
   
+  const refreshVine = () => {
+    getVine(params.vine).then((res) => setActiveVine(res)).catch((err) => setActiveVine(sampleVine));
+  }
 
   useEffect(() => {
-    getVine(params.vine).then((res) => setActiveVine(res)).catch((err) => setActiveVine(sampleVine));
+    refreshVine();
   }, [params.vine])
   
     return (
@@ -23,7 +26,7 @@ export default function Build({ params }: {params: {vine: string}} ) {
         <Menu mode="Building" title={activeVine.name}/>
         <TreeView vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
         <BubblePlot vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
-        <BuildPanel vine={activeVine} selected={selected}/>
+        <BuildPanel vine={activeVine} selected={selected} onChange={() => refreshVine()}/>
       </>
     )
   }

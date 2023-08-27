@@ -13,7 +13,7 @@ export enum BuildMode {
   GRAPE
 }
 
-function BuildPanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | null}) {
+function BuildPanel({vine, selected, onChange}: {vine: Vine, selected: Bunch | Grape | null, onChange: Function}) {
   const [mode, setMode] = useState(BuildMode.GRAPE);
 
   return (
@@ -31,11 +31,11 @@ function BuildPanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | nul
         
         
         {mode == BuildMode.BUNCH &&
-          <AddBunch vineId={vine.id} selected={selected}/>
+          <AddBunch vineId={vine.id} selected={selected} onSave={() => setTimeout(onChange(), 1500)}/>
         }
 
         {mode == BuildMode.GRAPE && 
-          <AddGrape vineId={vine.id} selected={selected}/>
+          <AddGrape vineId={vine.id} selected={selected} onSave={() => setTimeout(onChange(), 1500)}/>
         }
         
     </div>
