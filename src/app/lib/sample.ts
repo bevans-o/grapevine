@@ -155,3 +155,13 @@ export const sampleVine: Vine = {
         }
     ]
 }
+
+
+export const emptyVine: Vine = {
+    id: "loading",
+    name: "Loading",
+    desc: "Vine loading...",
+    owner: sampleUsers[0],
+    grapes: [],
+    bunches: []
+}

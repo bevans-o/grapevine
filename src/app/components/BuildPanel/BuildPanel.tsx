@@ -31,7 +31,7 @@ function BuildPanel({vine, selected}: {vine: Vine, selected: Bunch | Grape | nul
         
         
         {mode == BuildMode.BUNCH &&
-          <AddBunch vineId={vine.id} />
+          <AddBunch vineId={vine.id} selected={selected}/>
         }
 
         {mode == BuildMode.GRAPE && 

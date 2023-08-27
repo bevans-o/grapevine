@@ -8,8 +8,6 @@ function BubblePlot({vine, selected, onSelect}) {
   const width = 1500;
   const height = 1300; 
 
-  console.log(selected)
-
   const ref = useRef()
 
   useEffect(() => {
@@ -76,8 +74,6 @@ function BubblePlot({vine, selected, onSelect}) {
         }
         )
 
-        console.log(children);
-
         return d.grapes.concat(children);
       }
 
@@ -91,7 +87,6 @@ function BubblePlot({vine, selected, onSelect}) {
 
     const simulation = d3.forceSimulation(nodes)
       .force("link", d3.forceLink(links).id(d => d.id).distance(d => {
-        console.log(d);
         if (d.target.data.owner) return 180;
         if (d.target.data.email) return 50;
         return 120;
@@ -159,13 +154,14 @@ function BubblePlot({vine, selected, onSelect}) {
 
 
       return () => {
+        svg.selectAll("*").remove();
         //svg.remove();
       }
-  }, [])
+  }, [vine])
   
   return (
     <div>
-      <svg id="plot">
+      <svg id="plot" ref={ref}>
 
       </svg>
     </div>

@@ -30,6 +30,11 @@ function AddGrape({vineId, selected} : {vineId: string, selected : Bunch | Grape
         
       }
 
+      setName("");
+      setDesc("");
+      setThreshold(75);
+      setTags([]);
+
     }
 
     const marks = [
@@ -50,6 +55,7 @@ function AddGrape({vineId, selected} : {vineId: string, selected : Bunch | Grape
   return (
     <div className={build.subpanel}>
         <div className={tool.toolPanelSection}>
+            {selected && <p className={build.parent}>Adding grape to <strong>{selected.name}</strong></p>}
 
             <input onChange={(e) => setName(e.target.value)} type='text' placeholder='Proposal'></input>
             <textarea onChange={(e) => setDesc(e.target.value)} rows={5} placeholder='Description'></textarea>
@@ -76,7 +82,7 @@ function AddGrape({vineId, selected} : {vineId: string, selected : Bunch | Grape
 
                 <Slider
                     aria-label="Threshold"
-                    defaultValue={threshold}
+                    value={threshold}
                     valueLabelDisplay="auto"
                     step={5}
                     marks={marks}
@@ -97,8 +103,9 @@ function AddGrape({vineId, selected} : {vineId: string, selected : Bunch | Grape
         </div>
 
         <div className={tool.toolPanelSection}>
-            <Button text='Add' type='yes' disabled={false} onClick={() => handleSave()}/>
-            <Button text='Cancel' type='' disabled={false} onClick={() => console.log("cancel")}/>
+            {!selected && <p className={build.parentError}>No parent selected! Select a parent node on the left to add this grape to.</p>}
+            <Button text='Add' type='yes' disabled={selected ? false : true} onClick={() => handleSave()}/>
+            <Button text='Cancel' type='' disabled={selected ? false : true} onClick={() => console.log("cancel")}/>
         </div>
     </div>
     
