@@ -6,7 +6,7 @@ import { SignInOptions } from "next-auth/react";
 import { User, Role } from '../../../lib/types'
 
 const handler =  NextAuth({
-    adapter: MongoDBAdapter(MongoGlobal.getInstance().getPromise(), {collections: {Users: "googleAccounts"}}),
+    adapter: MongoDBAdapter(MongoGlobal.getPromise(), {collections: {Users: "googleAccounts"}}),
     
     providers: [
       GoogleProvider({
@@ -37,11 +37,11 @@ export { handler as GET, handler as POST}
 
   
 async function createAccount(profile : any) {
-  if ((await MongoGlobal.getInstance().getDb().collection("users").countDocuments({"email" : profile.email})) > 0) {
+  if ((await MongoGlobal.getDb().collection("users").countDocuments({"email" : profile.email})) > 0) {
       return {"body" : "Account Exists!"}
   } else {
       const newUser = getNewUser(profile);
-      MongoGlobal.getInstance().getDb().collection("users").insertOne(newUser);
+      MongoGlobal.getDb().collection("users").insertOne(newUser);
       return {"body" : {"newUser" : JSON.stringify(newUser)}}
   }
 }

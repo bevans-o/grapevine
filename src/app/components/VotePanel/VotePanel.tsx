@@ -14,6 +14,8 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
     const [users, setUsers] = useState<Array<User>>(sampleUsers);
     const [grape, setGrape] = useState<Grape | null>(isGrape(selected) ? selected :  null);
     const [hasVoted, setVoted] = useState(false);
+    
+
     useEffect(() => {
         if(isGrape(selected)){
             getGrape(selected?.id!).then((res) => {
@@ -21,6 +23,10 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
             })
         }
     }, [selected]) 
+
+    useEffect(() => {
+        setVoted(grape?.yeses.concat(grape?.nos).filter((votedUser) => user.email === votedUser.email) ? true : false)
+    }, [grape])
 
     const undecideds = users.filter((user: User) => {
         let voted = false;
@@ -39,7 +45,6 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
                 }
             })
         }
-        setVoted(voted)
         return !voted;
     })
 

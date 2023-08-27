@@ -15,7 +15,7 @@ export async function POST(req: Request, res: Response) {
 async function getUser(email: string) : Promise<User> {
     let user : User = {email : "", name: "", image: "", 
     tags: [], weight: 0, role: Role.USER}
-    let data  = await MongoGlobal.getInstance().getDb().collection("users").findOne({email: email})
+    let data  = await MongoGlobal.getDb().collection("users").findOne({email: email})
     if (data){
         let res = JSON.stringify(data)
         let jsonRes = await JSON.parse(res)

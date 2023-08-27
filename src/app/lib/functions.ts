@@ -1,4 +1,3 @@
-import { Callback } from "mongodb";
 import { Grape, User, Vine, Role, Bunch, GrapeStatus } from "./types";
 import axios from "axios";
 import { ObjectId } from "mongodb";

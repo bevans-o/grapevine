@@ -14,5 +14,5 @@ export async function POST(req: Request, res: Response) {
 }
 
 async function voteYes(grapeId: string, voterId: string, status : GrapeStatus) {
-    return MongoGlobal.getInstance().getDb().collection("grapes").updateOne({_id : new ObjectId(grapeId)}, {$push: {yeses : voterId}, $set : {status: status}})
+    return MongoGlobal.getDb().collection("grapes").updateOne({_id : new ObjectId(grapeId)}, {$push: {yeses : voterId}, $set : {status: status}})
 }

@@ -28,4 +28,7 @@ class MongoGlobal {
     }
 }
 
-export default MongoGlobal;
+
+const mongodb = MongoGlobal.getInstance();
+
+export default mongodb;

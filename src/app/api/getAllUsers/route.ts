@@ -13,7 +13,7 @@ export async function POST(req: Request, res: Response) {
 
 async function getUsers() : Promise<Array<User>> {
     let users : Array<User> = []
-    let data  = MongoGlobal.getInstance().getDb().collection("users").find({})
+    let data  = MongoGlobal.getDb().collection("users").find({})
     for await (const user of data) {
         let res = JSON.stringify(user)
         let jsonRes = await JSON.parse(res)
