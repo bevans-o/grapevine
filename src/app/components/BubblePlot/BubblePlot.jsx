@@ -8,6 +8,8 @@ function BubblePlot({vine, selected, onSelect}) {
   const width = 1500;
   const height = 1300; 
 
+  console.log(vine);
+
   const ref = useRef()
 
   useEffect(() => {
@@ -55,7 +57,7 @@ function BubblePlot({vine, selected, onSelect}) {
           const tags = d.tags.filter(tag => yes.tags?.includes(tag));
 
           children.push({
-            ...yes,
+            email: yes,
             vote: "yes",
             tagged: tags.length > 0
           })
@@ -67,7 +69,7 @@ function BubblePlot({vine, selected, onSelect}) {
           const tags = d.tags.filter(tag => no.tags?.includes(tag));
 
           children.push({
-            ...no,
+            email: no,
             vote: "no",
             tagged: tags.length > 0
           })
@@ -92,7 +94,7 @@ function BubblePlot({vine, selected, onSelect}) {
         return 120;
       }
       ).strength(1))
-      .force("charge", d3.forceManyBody().strength(-300));
+      .force("charge", d3.forceManyBody().strength(-400));
 
     svg.attr("width", width)
       .attr("height", height)
@@ -118,22 +120,22 @@ function BubblePlot({vine, selected, onSelect}) {
         console.log(d.data)
         if (d.data.tagged) return "var(--n800)";
         if (d.data.owner) return "var(--n100)";
-        if (d.data.status === GrapeStatus.FAILED) return "var(--no500)";
-        if (d.data.status === GrapeStatus.PASSED) return "var(--yes500)";
+        if (d.data.status === "FAILED") return "var(--no500)";
+        if (d.data.status === "PASSED") return "var(--yes500)";
         if (d.data.status) return "var(--b200)";
         return "var(--n800)";
       })
       .attr("stroke", d => {
         if (d.data.owner) return "var(--n300)";
-        if (d.data.status === GrapeStatus.FAILED || d.data.vote === "no") return "var(--no700)";
-        if (d.data.status === GrapeStatus.PASSED || d.data.vote === "yes") return "var(--yes700)";
+        if (d.data.status === "FAILED" || d.data.vote === "no") return "var(--no700)";
+        if (d.data.status === "PASSED" || d.data.vote === "yes") return "var(--yes700)";
         if (d.data.status) return "var(--b400)";
         return "var(--n900)";
       })
       .attr("r", d => {
         if (d.data.owner) return 60;
         if (d.data.threshold) return 26;
-        if (d.data.email) return (5 * d.data.weight) * (d.data.tagged ? 2 : 1);
+        if (d.data.email) return 15;
         return 40;
       })
       .call(drag(simulation));

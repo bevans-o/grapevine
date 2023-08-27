@@ -184,7 +184,7 @@ function VotePanel({vine, selected, user, onChange}: {vine: Vine, selected: Grap
 
                         {selected.status == GrapeStatus.FAILED || selected.status === "FAILED" &&
                             <div className={`${vote.status} ${vote.failed}`}>
-                                {percentage}% IN FAVOUR - UNDECIDED
+                                {percentage}% - UNDECIDED
                             </div>
                         }
 
