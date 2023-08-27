@@ -47,5 +47,5 @@ export interface Grape {
 export enum GrapeStatus {
     OPEN = "OPEN",
     PASSED = "PASSED",
-    FAILED = "FAILES",
+    FAILED = "FAILED",
 }
