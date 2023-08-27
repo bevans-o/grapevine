@@ -17,7 +17,7 @@ async function getGrape(grapeId :string ) {
     let jsonRes : any;
     let grapes : Grape[];
 
-   let grape = await MongoGlobal.getInstance().getDb().collection("grapes").findOne({_id: new ObjectId(grapeId)});
+   let grape = await MongoGlobal.getDb().collection("grapes").findOne({_id: new ObjectId(grapeId)});
 
    
    
@@ -33,7 +33,7 @@ async function getGrape(grapeId :string ) {
 
 
 async function getUser(email : string) {
-    let data  = await MongoGlobal.getInstance().getDb().collection("users").findOne({email: email})
+    let data  = await MongoGlobal.getDb().collection("users").findOne({email: email})
     let res = JSON.stringify(data)
     let jsonRes = await JSON.parse(res)
     let user = { email: jsonRes.email, name: jsonRes.name, image: jsonRes.image, tags: jsonRes.tags, weight: jsonRes.weight, role: jsonRes.role}; 

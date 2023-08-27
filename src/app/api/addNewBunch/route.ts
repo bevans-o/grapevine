@@ -14,10 +14,10 @@ export async function POST(req: Request, res: Response) {
 }
 
 async function addBunch(bunch: Bunch, vineId : string) {
-    return MongoGlobal.getInstance().getDb().collection("bunches").insertOne({name: bunch.name, desc: bunch.desc, grapes: bunch.grapes}).then((res) => {
+    return MongoGlobal.getDb().collection("bunches").insertOne({name: bunch.name, desc: bunch.desc, grapes: bunch.grapes}).then((res) => {
         let id = res.insertedId
         bunch.id = id.toString()
-        MongoGlobal.getInstance().getDb().collection("vines").updateOne({_id : new ObjectId(vineId)}, { $push : {bunches : id}})
+        MongoGlobal.getDb().collection("vines").updateOne({_id : new ObjectId(vineId)}, { $push : {bunches : id}})
         return id;
     })
 }

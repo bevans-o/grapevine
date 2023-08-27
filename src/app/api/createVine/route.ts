@@ -14,7 +14,7 @@ export async function POST(req: Request, res: Response) {
 }
 
 async function createVine(email: string) {
-    return MongoGlobal.getInstance().getDb().collection("vines").insertOne({name: "", description: "", owner: email, bunches: [], grapes: []}).then(
+    return MongoGlobal.getDb().collection("vines").insertOne({name: "", description: "", owner: email, bunches: [], grapes: []}).then(
         (res) => {if(res.acknowledged) { 
             return res.insertedId
         } else 

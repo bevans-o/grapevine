@@ -20,7 +20,7 @@ async function getVine(vineId: string) : Promise<Vine> {
     let bunches : Bunch[];
     let grapes : Grape[];
 
-    let vine = await MongoGlobal.getInstance().getDb().collection("vines").findOne({_id: new ObjectId(vineId)})
+    let vine = await MongoGlobal.getDb().collection("vines").findOne({_id: new ObjectId(vineId)})
 
     let data = JSON.stringify(vine)
     jsonRes = JSON.parse(data)
@@ -37,7 +37,7 @@ async function getBunch(bunchId : string) {
     let jsonRes : any;
     let grapes: Grape[];
 
-    let bunch = await MongoGlobal.getInstance().getDb().collection("bunches").findOne({_id: new ObjectId(bunchId)});
+    let bunch = await MongoGlobal.getDb().collection("bunches").findOne({_id: new ObjectId(bunchId)});
 
     let data = JSON.stringify(bunch)
     jsonRes = JSON.parse(data)
@@ -53,7 +53,7 @@ async function getGrape(grapeId :string ) {
     let jsonRes : any;
     let grapes : Grape[];
 
-   let grape = await MongoGlobal.getInstance().getDb().collection("grapes").findOne({_id: new ObjectId(grapeId)})
+   let grape = await MongoGlobal.getDb().collection("grapes").findOne({_id: new ObjectId(grapeId)})
    
    
     let data = JSON.stringify(grape)

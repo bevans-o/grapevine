@@ -13,7 +13,9 @@ import { select } from 'd3'
 function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch | null , user : User}) {
     const [users, setUsers] = useState<Array<User>>(sampleUsers);
     const [grape, setGrape] = useState<Grape | null>(isGrape(selected) ? selected :  null);
-    const [voted, setVoted] = useState(false);
+    const [hasVoted, setVoted] = useState(false);
+    
+
     useEffect(() => {
         if(isGrape(selected)){
             getGrape(selected?.id!).then((res) => {
@@ -21,6 +23,10 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
             })
         }
     }, [selected]) 
+
+    useEffect(() => {
+        setVoted(grape?.yeses.concat(grape?.nos).filter((votedUser) => user.email === votedUser.email) ? true : false)
+    }, [grape])
 
     const undecideds = users.filter((user: User) => {
         let voted = false;
@@ -39,7 +45,6 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
                 }
             })
         }
-        setVoted(voted)
         return !voted;
     })
 
@@ -164,7 +169,7 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
                 </div>}
             </div>
 
-            {isGrape(selected) && grape && !voted && <div className={tool.toolPanelSection}>
+            {isGrape(selected) && grape && !hasVoted && <div className={tool.toolPanelSection}>
                 <Button text='Yes' type='yes' disabled={selected.status != GrapeStatus.OPEN} onClick={() => handleYes()}/>
                 <Button text='No' type='no' disabled={selected.status != GrapeStatus.OPEN} onClick={() => handleNo()}/>
             </div>}
