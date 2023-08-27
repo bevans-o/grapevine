@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { Vine, Bunch, Grape } from '../../lib/types'
+import { Vine, Bunch, Grape, GrapeStatus } from '../../lib/types'
 import { NextResponse } from 'next/server';
 import MongoGlobal from '../../lib/mongodb';
 import { ObjectId } from 'mongodb';
@@ -27,7 +27,7 @@ async function getGrape(grapeId :string ) {
     grapes = await jsonRes.grapes ? await Promise.all(jsonRes.grapes.map(async (grapeId : string) => getGrape(grapeId))) : [];
     let yeses = await jsonRes.yeses ? await Promise.all(jsonRes.yeses.map(async (email : string) => getUser(email))) : [];
     let nos = await jsonRes.nos ? await Promise.all(jsonRes.nos.map(async (email : string) => getUser(email))) : [];
-    let result : Grape = {id: jsonRes._id, name: jsonRes.name, desc: jsonRes.description, status : jsonRes.status, yeses: yeses, nos: nos, threshold: jsonRes.threshold, tags: jsonRes.tags, grapes: grapes}
+    let result : Grape = {id: jsonRes._id, name: jsonRes.name, desc: jsonRes.description, status : GrapeStatus[jsonRes.status as keyof typeof GrapeStatus], yeses: yeses, nos: nos, threshold: jsonRes.threshold, tags: jsonRes.tags, grapes: grapes}
     return result;
 }
 
