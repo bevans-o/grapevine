@@ -62,7 +62,7 @@
     border-color: var(--yes800);
 }
 
-.status.failing {
+.status.failed {
     background: var(--no600);
     border-color: var(--no800);
 }

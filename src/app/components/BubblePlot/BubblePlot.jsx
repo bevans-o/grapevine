@@ -120,14 +120,14 @@ function BubblePlot({vine, selected, onSelect}) {
         if (d.data.owner) return "var(--n100)";
         if (d.data.status === GrapeStatus.FAILED) return "var(--no500)";
         if (d.data.status === GrapeStatus.PASSED) return "var(--yes500)";
-        if (d.data.status === GrapeStatus.OPEN) return "var(--b200)";
+        if (d.data.status) return "var(--b200)";
         return "var(--n800)";
       })
       .attr("stroke", d => {
         if (d.data.owner) return "var(--n300)";
         if (d.data.status === GrapeStatus.FAILED || d.data.vote === "no") return "var(--no700)";
         if (d.data.status === GrapeStatus.PASSED || d.data.vote === "yes") return "var(--yes700)";
-        if (d.data.status === GrapeStatus.OPEN) return "var(--b400)";
+        if (d.data.status) return "var(--b400)";
         return "var(--n900)";
       })
       .attr("r", d => {
