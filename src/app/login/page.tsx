@@ -17,7 +17,7 @@ export default function Login() {
             Welcome! <strong>Grapevine</strong> is a tool to support collective decision-making in the workplace.
           </div>
           <div className={login.box}>
-            <Button text={"Login with Google"} type="yes" onClick={() => signIn("google", {callbackUrl: "http://localhost:3000/dashboard"})}>
+            <Button text={"Login with Google"} type="yes" onClick={() => signIn("google", {callbackUrl: "http://" + process.env.HOST_NAME + "/dashboard"})}>
               <GoogleIcon />
             </Button>
           </div>
