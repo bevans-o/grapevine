@@ -1,5 +1,6 @@
 .main {
     height: 100vh;
+    overflow: hidden;
     color: var(--n400);
     background: var(--n900);
 
@@ -14,7 +15,8 @@
 .grid {
     width: 100%;
     height: 100%;
-
+    
+    overflow-y: auto;
     display: grid;
     grid-template-areas: 
         "title title"
@@ -23,7 +25,8 @@
         "bottom bottom";
 
     grid-template-columns: minmax(0, 8fr) minmax(0, 2fr);
-    grid-template-rows: 10rem 16rem 16rem auto;
+    grid-template-rows: 9rem 15rem 13rem auto;
+    column-gap: 2rem;
 }
 
 .logo {
@@ -58,8 +61,8 @@
 
 .vine {
     position: relative;
-    width: 12rem;
-    height: 12rem;
+    width: 10rem;
+    height: 10rem;
 
     border-radius: 5px;
     box-shadow: inset 0 1px 2px 4px rgba(255, 255, 255, 0.1),
@@ -95,10 +98,18 @@
 
     color: var(--n200);
 
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     box-shadow: 
     inset 0 -3px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.vineTitle span {
+    color: var(--a200);
 }
 
 .vineContainer {
@@ -112,7 +123,7 @@
     display: flex;
     align-items: flex-end;
 
-    font-size: 5rem;
+    font-size: 4.5rem;
     font-weight: 500;
     color: var(--n100);
 
@@ -131,8 +142,6 @@
 
 .users {
     grid-area: team;
-    padding: 2rem 2rem 2.75rem;
-    border: 1px solid var(--n800);
     height: fit-content;
     border-radius: 6px;
 }
