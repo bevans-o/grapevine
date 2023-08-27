@@ -17,7 +17,7 @@ export default function Login() {
             Welcome! <strong>Grapevine</strong> is a tool to support collective decision-making in the workplace.
           </div>
           <div className={login.box}>
-            <Button text={"Login with Google"} type="yes" onClick={async () => await signIn("google", {callbackUrl: "https://grapevine-seven.vercel.app" + "/dashboard"})}>
+            <Button text={"Login with Google"} type="yes" onClick={async () => await signIn("google", {callbackUrl: "/dashboard"})}>
               <GoogleIcon />
             </Button>
           </div>
