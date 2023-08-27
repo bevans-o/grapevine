@@ -128,6 +128,15 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
                 </h2>
                 {selected.desc != "" && <p className={vote.description}>{selected.desc}</p>}
 
+                {isGrape(selected) && grape && <div className={vote.tags}>
+                    {grape.tags.map((tag, index) => 
+                        <div className={vote.tag} key={index}>
+                        {tag}
+                        </div>
+                    )}
+
+                </div>}
+
                 {isGrape(selected) && grape && <div className={vote.results}>
                     Results
                     {grape.yeses.length > 0 && <div className={vote.yeses}>

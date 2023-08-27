@@ -8,7 +8,7 @@ import { ObjectId } from 'mongodb';
 
 export async function POST(req: Request, res: Response) {
     const request = await req.json();
-    const response = await addGrape(request.grape, request.vineId, request.bunchId, request.parentId);
+    const response = await addGrape(request.grape, request.vineId, request.bunchId, request.parentGrape);
     return NextResponse.json(response);
 
 }
@@ -17,7 +17,7 @@ async function addGrape(grape: Grape, vineId : string, bunchId: string, parentGr
     return MongoGlobal.getDb().collection("grapes").insertOne({name: grape.name, desc: grape.desc, threshold: grape.threshold, status: grape.status,
     yeses : grape.yeses, nos: grape.nos, tags: grape.tags, grapes: grape.grapes}).then(
         (res) => {
-            if(bunchId){
+            if (bunchId){
                 MongoGlobal.getDb().collection("bunches").updateOne({_id : new ObjectId(bunchId)}, { $push : {grapes : res.insertedId}})
             }
             else if (parentGrape){

@@ -20,7 +20,7 @@ function AddGrape({vineId, selected, onSave} : {vineId: string, selected : Bunch
     const handleSave = () => {
       console.log("save");
       let grape : Grape = {id: "", name: name, desc: desc, threshold: threshold, status: GrapeStatus.OPEN, yeses: [], nos: [], tags: tags, grapes: []}
-      if (name && desc && threshold) {
+      if (name && threshold) {
         if (selected) {
           if (isGrape(selected)) {
             addGrape(vineId, grape, "", selected.id);
