@@ -9,13 +9,15 @@ import Logo from "../components/Logo/Logo";
 import Names from "../components/Names/Names";
 import Link from "next/link";
 import Button from "../components/Button/Button";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
   const {data: session, status} = useSession();
   const [user, setUser] = useState<User>();
   const [users, setUsers] = useState<User[]>([]);
   const [vines, setVines] = useState<Array<Vine>>();
+
+  const router = useRouter();
 
   useEffect(() => {
     
