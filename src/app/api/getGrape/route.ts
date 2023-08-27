@@ -3,14 +3,12 @@ import { Vine, Bunch, Grape } from '../../lib/types'
 import { NextResponse } from 'next/server';
 import MongoGlobal from '../../lib/mongodb';
 import { ObjectId } from 'mongodb';
-import { error } from 'console';
-import { json } from 'd3';
 
 
 export async function POST(req: Request, res: Response) {
     const request = await req.json();
     const response = await getGrape(request.grapeId);
-    
+    console.log("receiving request")
     return NextResponse.json(response);
 
 }

@@ -8,20 +8,19 @@ import { Bunch, Grape, GrapeStatus, User, Vine } from '../../lib/types'
 import { getAllUsers, voteYes, voteNo, getGrape } from '@/app/lib/functions'
 import Button from '../Button/Button'
 import { sampleUsers } from '@/app/lib/sample'
+import { select } from 'd3'
 
-function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | null , user : User}) {
+function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch | null , user : User}) {
     const [users, setUsers] = useState<Array<User>>(sampleUsers);
-    const [grape, setGrape] = useState<Grape>(selected!);
-
+    const [grape, setGrape] = useState<Grape | null>(isGrape(selected) ? selected :  null);
+    const [voted, setVoted] = useState(false);
     useEffect(() => {
-        if(selected){
+        if(isGrape(selected)){
             getGrape(selected?.id!).then((res) => {
-                setGrape(grape);
+                setGrape(res);
             })
         }
-    }, []) 
-
-    console.log(grape)
+    }, [selected]) 
 
     const undecideds = users.filter((user: User) => {
         let voted = false;
@@ -31,6 +30,7 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | null ,
                 if (yes.email === user.email) {
                     voted = true;
                 }
+
             })
 
             grape?.nos.forEach((no: User) => {
@@ -39,15 +39,15 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | null ,
                 }
             })
         }
-
+        setVoted(voted)
         return !voted;
     })
 
     let currentWeight = 0;
     let possibleWeight = 0;
     let negativeWeight = 0;
-    if (isGrape(selected)) {
-        grape?.yeses.forEach((user) => {
+    if (isGrape(selected) && grape) {
+        grape?.yeses?.forEach((user) => {
             const tags = selected.tags.filter(tag => user.tags.includes(tag));
 
             currentWeight += user.weight * (tags.length > 0 ? 2 : 1);
@@ -81,7 +81,7 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | null ,
 
 
     const handleYes = () => {
-        if (isGrape(selected)) {
+        if (isGrape(selected) && grape) {
             const tags = grape?.tags.filter(tag => user.tags.includes(tag));
             currentWeight += user.weight * (tags.length > 0 ? 2 : 1);
             grape.yeses.push(user);
@@ -96,7 +96,7 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | null ,
 
     const handleNo = () => {
         console.log("no");
-        if (isGrape(selected)) {
+        if (isGrape(selected) && grape) {
             const tags = grape?.tags.filter(tag => user.tags.includes(tag));
             negativeWeight += user.weight * (tags.length > 0 ? 2 : 1);
             grape.nos.push(user);
@@ -120,9 +120,9 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | null ,
                 </h2>
                 {selected.desc != "" && <p className={vote.description}>{selected.desc}</p>}
 
-                {isGrape(selected) && <div className={vote.results}>
+                {isGrape(selected) && grape && <div className={vote.results}>
                     Results
-                    {selected.yeses.length > 0 && <div className={vote.yeses}>
+                    {grape.yeses.length > 0 && <div className={vote.yeses}>
                         {grape?.yeses.map((user: User) => 
                             <UserBubble user={user} vote="yes" key={user.email}/>
                         )}
@@ -164,7 +164,7 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | null ,
                 </div>}
             </div>
 
-            {isGrape(selected) && <div className={tool.toolPanelSection}>
+            {isGrape(selected) && grape && !voted && <div className={tool.toolPanelSection}>
                 <Button text='Yes' type='yes' disabled={selected.status != GrapeStatus.OPEN} onClick={() => handleYes()}/>
                 <Button text='No' type='no' disabled={selected.status != GrapeStatus.OPEN} onClick={() => handleNo()}/>
             </div>}

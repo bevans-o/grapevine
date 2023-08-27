@@ -16,7 +16,7 @@ export default function Vote({ params }: {params: {vine: string}} ) {
   const [selected, setSelected] = useState<Grape | Bunch | null>(null);
   const [user, setUser] = useState<User>();
 
-  console.log(activeVine);
+  console.log(user);
 
   useEffect(() => {
     (session?.user && getUser(session.user.email!, setUser))
