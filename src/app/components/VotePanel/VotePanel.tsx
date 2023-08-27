@@ -139,7 +139,7 @@ function VotePanel({vine, selected, user, onChange}: {vine: Vine, selected: Grap
                 <h2>
                     {selected.name}
                 </h2>
-                {selected.desc != "" && <p className={vote.description}>{selected.desc}</p>}
+                {selected.desc !== "" && <p className={vote.description}>{selected.desc}</p>}
 
                 {isGrape(selected) && grape && <div className={vote.tags}>
                     {grape.tags.map((tag, index) => 
@@ -182,7 +182,7 @@ function VotePanel({vine, selected, user, onChange}: {vine: Vine, selected: Grap
                             </div>
                         }
 
-                        {selected.status == GrapeStatus.FAILED || selected.status === "FAILED" &&
+                        {selected.status == GrapeStatus.FAILED &&
                             <div className={`${vote.status} ${vote.failed}`}>
                                 {percentage}% - UNDECIDED
                             </div>
