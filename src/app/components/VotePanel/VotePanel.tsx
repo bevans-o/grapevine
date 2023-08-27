@@ -8,7 +8,6 @@ import { Bunch, Grape, GrapeStatus, User, Vine } from '../../lib/types'
 import { getAllUsers, voteYes, voteNo, getGrape } from '@/app/lib/functions'
 import Button from '../Button/Button'
 import { sampleUsers } from '@/app/lib/sample'
-import { select } from 'd3'
 
 function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch | null , user : User}) {
     const [users, setUsers] = useState<Array<User>>([]);
@@ -92,12 +91,15 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
         if (isGrape(selected) && grape) {
             const tags = grape?.tags.filter(tag => user.tags.includes(tag));
             currentWeight += user.weight * (tags.length > 0 ? 2 : 1);
-            grape.yeses.push(user);
+            let newGrape = {...grape};
+            newGrape.yeses.push(user);
             if (currentWeight/possibleWeight >= grape.threshold/100){
                 voteYes(selected?.id!, user.email, GrapeStatus.PASSED);
             } else {
                 voteYes(selected?.id!, user.email, GrapeStatus.OPEN);
             }
+
+            setGrape(newGrape);
         }
         
     }
@@ -107,12 +109,15 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
         if (isGrape(selected) && grape) {
             const tags = grape?.tags.filter(tag => user.tags.includes(tag));
             negativeWeight += user.weight * (tags.length > 0 ? 2 : 1);
-            grape.nos.push(user);
+            let newGrape = {...grape};
+            newGrape.nos.push(user);
             if (negativeWeight/possibleWeight >= (100 - grape.threshold)/100){
                 voteNo(selected?.id!, user.email, GrapeStatus.FAILED);
             } else {
                 voteNo(selected?.id!, user.email, GrapeStatus.OPEN);
             }
+
+            setGrape(newGrape);
         }
     }
 

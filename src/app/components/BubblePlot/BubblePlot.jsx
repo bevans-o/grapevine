@@ -52,7 +52,7 @@ function BubblePlot({vine, selected, onSelect}) {
 
         d.yeses.forEach((yes) => {
           // check for overlap between user tags and grape tags
-          const tags = d.tags.filter(tag => yes.tags.includes(tag));
+          const tags = d.tags.filter(tag => yes.tags?.includes(tag));
 
           children.push({
             ...yes,
@@ -64,7 +64,7 @@ function BubblePlot({vine, selected, onSelect}) {
         )
 
         d.nos.forEach((no) => {
-          const tags = d.tags.filter(tag => no.tags.includes(tag));
+          const tags = d.tags.filter(tag => no.tags?.includes(tag));
 
           children.push({
             ...no,
