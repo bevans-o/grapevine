@@ -5,7 +5,7 @@ import { Bunch, Grape, GrapeStatus } from '@/app/lib/types';
 
 function TreeNode({grape, selected, onSelect}: {grape: Grape, selected: Bunch | Grape | null, onSelect: Function}) {
     const [expanded, setExpanded] = useState(true);
-    const childCount = grape.grapes.length;
+    const childCount = grape.grapes ? grape.grapes.length : 0;
 
   return (
     <div>

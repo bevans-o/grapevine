@@ -25,6 +25,10 @@ export async function getUser(email: string, setUser: Function) {
 
 // function getCurrentUser(): User {}
 
+export async function getGrape(grapeId : string): Promise<Grape> {
+    return (await axios.post('/api/getGrape', {grapeId : grapeId})).data
+}
+
 // function getVine(id: string): Vine {}
 export async function getVine(vineId : string): Promise<Vine> {
     return (await axios.post('/api/getVine', {vineId : vineId})).data

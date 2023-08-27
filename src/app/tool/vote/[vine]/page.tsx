@@ -16,6 +16,7 @@ export default function Vote({ params }: {params: {vine: string}} ) {
   const [selected, setSelected] = useState<Grape | Bunch | null>(null);
   const [user, setUser] = useState<User>();
 
+  console.log(activeVine);
 
   useEffect(() => {
     (session?.user && getUser(session.user.email!, setUser))
@@ -23,7 +24,7 @@ export default function Vote({ params }: {params: {vine: string}} ) {
     getVine(params.vine).then((res) => {
       setActiveVine(res)
     })
-    console.log(activeVine);
+    
   }, [])
 
 
@@ -34,8 +35,11 @@ export default function Vote({ params }: {params: {vine: string}} ) {
         <Menu mode="Voting" title={activeVine.name}/>
         <TreeView vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
         <BubblePlot vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
-        <VotePanel vine={activeVine} selected={selected} user={user!}/>
+        <VotePanel vine={activeVine} selected={isGrape(selected) ? selected : null} user={user!}/>
       </>
     )
   }
   
+  function isGrape(arg: any): arg is Grape {
+    return arg && arg.threshold && typeof(arg.threshold) == 'number';
+  }

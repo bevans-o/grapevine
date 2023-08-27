@@ -16,36 +16,50 @@ export async function POST(req: Request, res: Response) {
 }
 
 async function getVine(vineId: string) : Promise<Vine> {
-    return MongoGlobal.getInstance().getDb().collection("vines").findOne({_id: new ObjectId(vineId)}).then((res) => {
-        let data = JSON.stringify(res)
-        let jsonRes = JSON.parse(data)
-        let bunches = jsonRes.bunches ? jsonRes.bunches.map((bunchId: string) => getBunch(bunchId)) : [];
-        let grapes = jsonRes.grapes ? jsonRes.grapes.map((grapeId: string) => getGrape(grapeId)) : [];
-        let vine : Vine = {id: jsonRes._id, name: jsonRes.name, desc: jsonRes.description, owner: jsonRes.owner, bunches: bunches, grapes: grapes}
-        return vine
-    }).catch((error) => {
-        return error
-    })
+    let jsonRes : any;
+    let bunches : Bunch[];
+    let grapes : Grape[];
+
+    let vine = await MongoGlobal.getInstance().getDb().collection("vines").findOne({_id: new ObjectId(vineId)})
+
+    let data = JSON.stringify(vine)
+    jsonRes = JSON.parse(data)
+    
+    bunches = await jsonRes.bunches ? await Promise.all(jsonRes.bunches.map(async (bunchId: string) => getBunch(bunchId))) : [];
+
+    grapes = await jsonRes.grapes ? await Promise.all(jsonRes.grapes.map(async (grapeId: string) => getGrape(grapeId))) : [];
+
+    let result : Vine = {id: jsonRes._id, name: jsonRes.name, desc: jsonRes.description, owner: jsonRes.owner, bunches: bunches, grapes: grapes}
+    return result;
 }
 
 async function getBunch(bunchId : string) {
-    return MongoGlobal.getInstance().getDb().collection("bunches").findOne({_id: new ObjectId(bunchId)}).then((res) => {
-        let data = JSON.stringify(res)
-        let jsonRes = JSON.parse(data)
-        let grapes = jsonRes.grapes ? jsonRes.grapes.map((grapeId : string) => getGrape(grapeId)) : [];
-        let bunch : Bunch = {id: jsonRes._id, name: jsonRes.name, desc: jsonRes.description, grapes: grapes}
-        return bunch;
-    })
+    let jsonRes : any;
+    let grapes: Grape[];
+
+    let bunch = await MongoGlobal.getInstance().getDb().collection("bunches").findOne({_id: new ObjectId(bunchId)});
+
+    let data = JSON.stringify(bunch)
+    jsonRes = JSON.parse(data)
     
+    grapes = await jsonRes.grapes ? await Promise.all(jsonRes.grapes.map(async (grapeId : string) => getGrape(grapeId))) : [];
+    
+    let result : Bunch = {id: jsonRes._id, name: jsonRes.name, desc: jsonRes.description, grapes: grapes}
+    return result;
+
 }
 
 async function getGrape(grapeId :string ) {
-    console.log(grapeId)
-    return MongoGlobal.getInstance().getDb().collection("grapes").findOne({_id: new ObjectId(grapeId)}).then((res) => {
-        let data = JSON.stringify(res)
-        let jsonRes = JSON.parse(data)
-        let grapes = jsonRes.grapes ?  jsonRes.grapes.map((grapeId : string) => getGrape(grapeId)) : [];
-        let grape : Grape = {id: jsonRes._id, name: jsonRes.name, desc: jsonRes.description, status : jsonRes.status, yeses: jsonRes.yeses, nos: jsonRes.nos, threshold: jsonRes.threshold, tags: jsonRes.tags, grapes: grapes}
-        return grape;
-    })
+    let jsonRes : any;
+    let grapes : Grape[];
+
+   let grape = await MongoGlobal.getInstance().getDb().collection("grapes").findOne({_id: new ObjectId(grapeId)})
+   
+   
+    let data = JSON.stringify(grape)
+    jsonRes = JSON.parse(data)
+
+    grapes = await jsonRes.grapes ? await Promise.all(jsonRes.grapes.map(async (grapeId : string) => getGrape(grapeId))) : [];
+    let result : Grape = {id: jsonRes._id, name: jsonRes.name, desc: jsonRes.description, status : jsonRes.status, yeses: jsonRes.yeses, nos: jsonRes.nos, threshold: jsonRes.threshold, tags: jsonRes.tags, grapes: grapes}
+    return result;
 }

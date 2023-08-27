@@ -5,24 +5,35 @@ import vote from './vote.module.css'
 import tool from '@/app/tool/tool.module.css'
 import UserBubble from '../User/User'
 import { Bunch, Grape, GrapeStatus, User, Vine } from '../../lib/types'
-import { getAllUsers, voteYes, voteNo } from '@/app/lib/functions'
+import { getAllUsers, voteYes, voteNo, getGrape } from '@/app/lib/functions'
 import Button from '../Button/Button'
 import { sampleUsers } from '@/app/lib/sample'
 
-function VotePanel({vine, selected, user}: {vine: Vine, selected: Bunch | Grape | null, user : User}) {
+function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | null , user : User}) {
     const [users, setUsers] = useState<Array<User>>(sampleUsers);
+    const [grape, setGrape] = useState<Grape>(selected!);
+
+    useEffect(() => {
+        if(selected){
+            getGrape(selected?.id!).then((res) => {
+                setGrape(grape);
+            })
+        }
+    }, []) 
+
+    console.log(grape)
 
     const undecideds = users.filter((user: User) => {
         let voted = false;
 
         if (isGrape(selected)) {
-            selected.yeses.forEach((yes: User) => {
+            grape?.yeses.forEach((yes) => {
                 if (yes.email === user.email) {
                     voted = true;
                 }
             })
 
-            selected.nos.forEach((no: User) => {
+            grape?.nos.forEach((no: User) => {
                 if (no.email === user.email) {
                     voted = true;
                 }
@@ -36,22 +47,22 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Bunch | Grape 
     let possibleWeight = 0;
     let negativeWeight = 0;
     if (isGrape(selected)) {
-        selected?.yeses.forEach((user) => {
+        grape?.yeses.forEach((user) => {
             const tags = selected.tags.filter(tag => user.tags.includes(tag));
 
             currentWeight += user.weight * (tags.length > 0 ? 2 : 1);
         })
 
-        selected?.nos.forEach((user) => {
+        grape?.nos.forEach((user) => {
             const tags = selected.tags.filter(tag => user.tags.includes(tag));
 
             negativeWeight += user.weight * (tags.length > 0 ? 2 : 1);
         })
 
         users.forEach((user) => {
-            const tags = selected.tags.filter(tag => user.tags.includes(tag));
+            const tags = grape?.tags.filter(tag => user.tags.includes(tag));
 
-            possibleWeight += user.weight * (tags.length > 0 ? 2 : 1);
+            possibleWeight += user.weight * (tags?.length > 0 ? 2 : 1);
         })
     }
 
@@ -70,12 +81,11 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Bunch | Grape 
 
 
     const handleYes = () => {
-        console.log("yes");
         if (isGrape(selected)) {
-            const tags = selected.tags.filter(tag => user.tags.includes(tag));
+            const tags = grape?.tags.filter(tag => user.tags.includes(tag));
             currentWeight += user.weight * (tags.length > 0 ? 2 : 1);
-            selected.yeses.push(user);
-            if (currentWeight/possibleWeight >= selected.threshold/100){
+            grape.yeses.push(user);
+            if (currentWeight/possibleWeight >= grape.threshold/100){
                 voteYes(selected?.id!, user.email, GrapeStatus.PASSED);
             } else {
                 voteYes(selected?.id!, user.email, GrapeStatus.OPEN);
@@ -87,10 +97,10 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Bunch | Grape 
     const handleNo = () => {
         console.log("no");
         if (isGrape(selected)) {
-            const tags = selected.tags.filter(tag => user.tags.includes(tag));
+            const tags = grape?.tags.filter(tag => user.tags.includes(tag));
             negativeWeight += user.weight * (tags.length > 0 ? 2 : 1);
-            selected.nos.push(user);
-            if (negativeWeight/possibleWeight >= (100 - selected.threshold)/100){
+            grape.nos.push(user);
+            if (negativeWeight/possibleWeight >= (100 - grape.threshold)/100){
                 voteNo(selected?.id!, user.email, GrapeStatus.FAILED);
             } else {
                 voteNo(selected?.id!, user.email, GrapeStatus.OPEN);
@@ -113,14 +123,14 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Bunch | Grape 
                 {isGrape(selected) && <div className={vote.results}>
                     Results
                     {selected.yeses.length > 0 && <div className={vote.yeses}>
-                        {selected.yeses.map((user: User) => 
+                        {grape?.yeses.map((user: User) => 
                             <UserBubble user={user} vote="yes" key={user.email}/>
                         )}
                         <div className={vote.label}>Yes</div>
                     </div>}
 
                     {selected.nos.length > 0 && <div className={vote.nos}>
-                        {selected.nos.map((user: User) => 
+                        {grape?.nos.map((user: User) => 
                             <UserBubble user={user} vote="no" key={user.email}/>
                         )}
                         <div className={vote.label}>No</div>

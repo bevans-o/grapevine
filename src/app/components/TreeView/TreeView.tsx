@@ -12,8 +12,8 @@ function TreeView({vine, selected, onSelect}: {vine: Vine, selected: Bunch | Gra
         <p className={tree.desc}>{vine.desc}</p>
 
         <div className={tree.nodes}>
-            {vine.bunches.map((bunch: Bunch) => 
-                <TreeBunch bunch={bunch} key={bunch.id} selected={selected} onSelect={(node: Bunch | Grape | null) => onSelect(node)}/>
+            {vine.bunches.map((bunch: Bunch, index: number) => 
+                <TreeBunch bunch={bunch} key={index + bunch.id} selected={selected} onSelect={(node: Bunch | Grape | null) => onSelect(node)}/>
             )}
         </div>
         

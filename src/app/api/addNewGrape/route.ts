@@ -13,11 +13,12 @@ export async function POST(req: Request, res: Response) {
 
 }
 
-async function addGrape(grape: Grape, vineId : string, bunchId: Bunch, parentGrape: string) {
-    MongoGlobal.getInstance().getDb().collection("grapes").insertOne(grape).then(
+async function addGrape(grape: Grape, vineId : string, bunchId: string, parentGrape: string) {
+    return MongoGlobal.getInstance().getDb().collection("grapes").insertOne({name: grape.name, desc: grape.desc, threshold: grape.threshold, status: grape.status,
+    yeses : grape.yeses, nos: grape.nos, tags: grape.tags, grapes: grape.grapes}).then(
         (res) => {
             if(bunchId){
-                MongoGlobal.getInstance().getDb().collection("bunches").updateOne({_id : new ObjectId(bunchId.id)}, { $push : {grapes : res.insertedId}})
+                MongoGlobal.getInstance().getDb().collection("bunches").updateOne({_id : new ObjectId(bunchId)}, { $push : {grapes : res.insertedId}})
             }
             else if (parentGrape){
                 MongoGlobal.getInstance().getDb().collection("grapes").updateOne({_id : new ObjectId(parentGrape)}, { $push : {grapes : res.insertedId}})
