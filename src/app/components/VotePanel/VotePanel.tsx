@@ -201,8 +201,8 @@ function VotePanel({vine, selected, user, onChange}: {vine: Vine, selected: Grap
             </div>
 
             {isGrape(selected) && grape && undecideds.filter((user)=> user.email === thisUser.email)?.length > 0 && <div className={tool.toolPanelSection}>
-                <Button text='Yes' type='yes' disabled={selected.status != GrapeStatus.OPEN} onClick={() => handleYes()}/>
-                <Button text='No' type='no' disabled={selected.status != GrapeStatus.OPEN} onClick={() => handleNo()}/>
+                <Button text='Yes' type='yes' disabled={grape.status != GrapeStatus.OPEN} onClick={() => handleYes()}/>
+                <Button text='No' type='no' disabled={grape.status != GrapeStatus.OPEN} onClick={() => handleNo()}/>
             </div>}
         </>
         }

@@ -120,16 +120,16 @@ function BubblePlot({vine, selected, onSelect}) {
         console.log(d.data)
         if (d.data.tagged) return "var(--n800)";
         if (d.data.owner) return "var(--n100)";
-        if (d.data.status === "FAILED") return "var(--no500)";
+        if (d.data.status === "FAILED" || d.data.status === "FAILES" ) return "var(--no500)";
         if (d.data.status === "PASSED") return "var(--yes500)";
-        if (d.data.status) return "var(--b200)";
+        if (d.data.status || d.data.threshold) return "var(--b200)";
         return "var(--n800)";
       })
       .attr("stroke", d => {
         if (d.data.owner) return "var(--n300)";
-        if (d.data.status === "FAILED" || d.data.vote === "no") return "var(--no700)";
+        if (d.data.status === "FAILED" || d.data.status === "FAILES" || d.data.vote === "no") return "var(--no700)";
         if (d.data.status === "PASSED" || d.data.vote === "yes") return "var(--yes700)";
-        if (d.data.status) return "var(--b400)";
+        if (d.data.status || d.data.threshold) return "var(--b400)";
         return "var(--n900)";
       })
       .attr("r", d => {
