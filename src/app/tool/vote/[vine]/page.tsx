@@ -33,11 +33,7 @@ export default function Vote({ params }: {params: {vine: string}} ) {
         <Menu mode="Voting" title={activeVine.name}/>
         <TreeView vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
         <BubblePlot vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
-        <VotePanel vine={activeVine} selected={isGrape(selected) ? selected : null} user={user!}/>
+        <VotePanel vine={activeVine} selected={selected} user={user!}/>
       </>
     )
-  }
-  
-  function isGrape(arg: any): arg is Grape {
-    return arg && arg.threshold && typeof(arg.threshold) == 'number';
   }

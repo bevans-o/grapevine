@@ -5,15 +5,21 @@ import vote from './vote.module.css'
 import tool from '@/app/tool/tool.module.css'
 import UserBubble from '../User/User'
 import { Bunch, Grape, GrapeStatus, User, Vine } from '../../lib/types'
-import { getAllUsers, voteYes, voteNo, getGrape } from '@/app/lib/functions'
+import { getAllUsers, voteYes, voteNo, getGrape, getUser } from '@/app/lib/functions'
 import Button from '../Button/Button'
 import { sampleUsers } from '@/app/lib/sample'
+import { useSession } from 'next-auth/react'
 
 function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch | null , user : User}) {
+    const {data: session, status} = useSession();
     const [users, setUsers] = useState<Array<User>>([]);
     const [grape, setGrape] = useState<Grape | null>(isGrape(selected) ? selected :  null);
+    const [thisUser, setUser] = useState<User>(user);
     const [hasVoted, setVoted] = useState(false);
     
+    useEffect(() => {
+        (session?.user && getUser(session.user.email!, setUser))
+    }, [session]) 
 
     useEffect(() => {
         if(isGrape(selected)){
@@ -25,10 +31,10 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
 
     useEffect(() => {
         setVoted(grape?.yeses.concat(grape?.nos).filter((votedUser) => {
-            user?.email == votedUser?.email;
+            thisUser?.email == votedUser?.email;
             console.log(votedUser?.email)
         }) ? true : false)
-    }, [grape, user])
+    }, [grape, thisUser])
 
     const undecideds = users.filter((user: User) => {
         let voted = false;
@@ -89,14 +95,14 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
 
     const handleYes = () => {
         if (isGrape(selected) && grape) {
-            const tags = grape?.tags.filter(tag => user.tags.includes(tag));
-            currentWeight += user.weight * (tags.length > 0 ? 2 : 1);
+            const tags = grape?.tags.filter(tag => thisUser.tags.includes(tag));
+            currentWeight += thisUser.weight * (tags.length > 0 ? 2 : 1);
             let newGrape = {...grape};
-            newGrape.yeses.push(user);
+            newGrape.yeses.push(thisUser);
             if (currentWeight/possibleWeight >= grape.threshold/100){
-                voteYes(selected?.id!, user.email, GrapeStatus.PASSED);
+                voteYes(selected?.id!, thisUser.email, GrapeStatus.PASSED);
             } else {
-                voteYes(selected?.id!, user.email, GrapeStatus.OPEN);
+                voteYes(selected?.id!, thisUser.email, GrapeStatus.OPEN);
             }
 
             setGrape(newGrape);
@@ -107,14 +113,14 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
     const handleNo = () => {
         console.log("no");
         if (isGrape(selected) && grape) {
-            const tags = grape?.tags.filter(tag => user.tags.includes(tag));
-            negativeWeight += user.weight * (tags.length > 0 ? 2 : 1);
+            const tags = grape?.tags.filter(tag => thisUser.tags.includes(tag));
+            negativeWeight += thisUser.weight * (tags.length > 0 ? 2 : 1);
             let newGrape = {...grape};
-            newGrape.nos.push(user);
+            newGrape.nos.push(thisUser);
             if (negativeWeight/possibleWeight >= (100 - grape.threshold)/100){
-                voteNo(selected?.id!, user.email, GrapeStatus.FAILED);
+                voteNo(selected?.id!, thisUser.email, GrapeStatus.FAILED);
             } else {
-                voteNo(selected?.id!, user.email, GrapeStatus.OPEN);
+                voteNo(selected?.id!, thisUser.email, GrapeStatus.OPEN);
             }
 
             setGrape(newGrape);
@@ -151,7 +157,7 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
                         <div className={vote.label}>Yes</div>
                     </div>}
 
-                    {selected.nos.length > 0 && <div className={vote.nos}>
+                    {grape.nos.length > 0 && <div className={vote.nos}>
                         {grape?.nos.map((user: User) => 
                             <UserBubble user={user} vote="no" key={user.email}/>
                         )}
@@ -186,7 +192,7 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
                 </div>}
             </div>
 
-            {isGrape(selected) && grape && <div className={tool.toolPanelSection}>
+            {isGrape(selected) && grape && undecideds.filter((user)=> user.email === thisUser.email)?.length > 0 && <div className={tool.toolPanelSection}>
                 <Button text='Yes' type='yes' disabled={selected.status != GrapeStatus.OPEN} onClick={() => handleYes()}/>
                 <Button text='No' type='no' disabled={selected.status != GrapeStatus.OPEN} onClick={() => handleNo()}/>
             </div>}
