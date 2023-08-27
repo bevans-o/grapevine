@@ -25,8 +25,11 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
     }, [selected]) 
 
     useEffect(() => {
-        setVoted(grape?.yeses.concat(grape?.nos).filter((votedUser) => user.email === votedUser.email) ? true : false)
-    }, [grape])
+        setVoted(grape?.yeses.concat(grape?.nos).filter((votedUser) => {
+            user?.email == votedUser?.email;
+            console.log(votedUser?.email)
+        }) ? true : false)
+    }, [grape, user])
 
     const undecideds = users.filter((user: User) => {
         let voted = false;
@@ -169,7 +172,7 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
                 </div>}
             </div>
 
-            {isGrape(selected) && grape && !hasVoted && <div className={tool.toolPanelSection}>
+            {isGrape(selected) && grape && <div className={tool.toolPanelSection}>
                 <Button text='Yes' type='yes' disabled={selected.status != GrapeStatus.OPEN} onClick={() => handleYes()}/>
                 <Button text='No' type='no' disabled={selected.status != GrapeStatus.OPEN} onClick={() => handleNo()}/>
             </div>}
