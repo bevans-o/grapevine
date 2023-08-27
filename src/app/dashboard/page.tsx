@@ -10,6 +10,7 @@ import Names from "../components/Names/Names";
 import Link from "next/link";
 import Button from "../components/Button/Button";
 import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default function Dashboard() {
   const {data: session, status} = useSession();

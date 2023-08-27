@@ -9,12 +9,17 @@ import { Bunch, Grape, Vine, User } from "@/app/lib/types";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { getUser, getVine } from "@/app/lib/functions";
+import { redirect } from "next/navigation";
 
 export default function Vote({ params }: {params: {vine: string}} ) {
   const {data: session, status} = useSession();
   const [activeVine, setActiveVine] = useState<Vine>(emptyVine);
   const [selected, setSelected] = useState<Grape | Bunch | null>(null);
   const [user, setUser] = useState<User>();
+
+  if (!session){
+    redirect('/login')
+  }
 
 
   const refreshVine = () => {
