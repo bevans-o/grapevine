@@ -11,7 +11,7 @@ import { sampleUsers } from '@/app/lib/sample'
 import { select } from 'd3'
 
 function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch | null , user : User}) {
-    const [users, setUsers] = useState<Array<User>>(sampleUsers);
+    const [users, setUsers] = useState<Array<User>>([]);
     const [grape, setGrape] = useState<Grape | null>(isGrape(selected) ? selected :  null);
     const [hasVoted, setVoted] = useState(false);
     
