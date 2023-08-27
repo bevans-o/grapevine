@@ -10,7 +10,7 @@ import Button from '../Button/Button'
 import { sampleUsers } from '@/app/lib/sample'
 import { useSession } from 'next-auth/react'
 
-function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch | null , user : User}) {
+function VotePanel({vine, selected, user, onChange}: {vine: Vine, selected: Grape | Bunch | null , user : User, onChange: Function}) {
     const {data: session, status} = useSession();
     const [users, setUsers] = useState<Array<User>>([]);
     const [grape, setGrape] = useState<Grape | null>(isGrape(selected) ? selected :  null);
@@ -106,6 +106,7 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
             }
 
             setGrape(newGrape);
+            onChange();
         }
         
     }
@@ -124,6 +125,7 @@ function VotePanel({vine, selected, user}: {vine: Vine, selected: Grape | Bunch 
             }
 
             setGrape(newGrape);
+            onChange();
         }
     }
 

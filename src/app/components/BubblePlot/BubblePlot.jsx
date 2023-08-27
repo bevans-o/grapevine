@@ -115,6 +115,7 @@ function BubblePlot({vine, selected, onSelect}) {
       .data(nodes)
       .join("circle")
       .attr("fill", d => {
+        console.log(d.data)
         if (d.data.tagged) return "var(--n800)";
         if (d.data.owner) return "var(--n100)";
         if (d.data.status === GrapeStatus.FAILED) return "var(--no500)";

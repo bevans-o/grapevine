@@ -16,12 +16,14 @@ export default function Vote({ params }: {params: {vine: string}} ) {
   const [selected, setSelected] = useState<Grape | Bunch | null>(null);
   const [user, setUser] = useState<User>();
 
+
+  const refreshVine = () => {
+    getVine(params.vine).then((res) => setActiveVine(res)).catch((err) => setActiveVine(sampleVine));
+  }
+
   useEffect(() => {
     (session?.user && getUser(session.user.email!, setUser))
-    console.log("vineId " + params.vine)
-    getVine(params.vine).then((res) => {
-      setActiveVine(res)
-    })
+    refreshVine();
     
   }, [])
 
@@ -33,7 +35,7 @@ export default function Vote({ params }: {params: {vine: string}} ) {
         <Menu mode="Voting" title={activeVine.name}/>
         <TreeView vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
         <BubblePlot vine={activeVine} selected={selected} onSelect={(node: Grape | Bunch | null) => setSelected(node)}/>
-        <VotePanel vine={activeVine} selected={selected} user={user!}/>
+        <VotePanel vine={activeVine} selected={selected} user={user!} onChange={() => setTimeout(refreshVine, 2000)}/>
       </>
     )
   }
